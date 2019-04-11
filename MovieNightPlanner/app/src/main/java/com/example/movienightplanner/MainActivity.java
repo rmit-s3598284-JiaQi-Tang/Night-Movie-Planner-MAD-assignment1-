@@ -21,6 +21,9 @@ import android.widget.ListView;
 
 import com.example.movienightplanner.models.AppEngine;
 import com.example.movienightplanner.models.AppEngineImpl;
+import com.example.movienightplanner.models.EventImpl;
+import com.example.movienightplanner.models.Movie;
+import com.example.movienightplanner.models.MovieImpl;
 
 public class MainActivity extends AppCompatActivity {
     AppEngine appEngine = AppEngineImpl.getSharedInstance();
@@ -32,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listView);
         ArrayList<String> arrayList = new ArrayList<>();
-//        arrayList.add(readFile("events.txt"));
-//        arrayList.add(readFile("movies.txt"));
+        for(EventImpl event: appEngine.getEventsList(this)) {
+            arrayList.add(event.getTittle()+" , "+event.getStartDate()+"-"+event.getEndDate() + " , " + event.getLocation());
+        }
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(arrayAdapter);
-        appEngine.readTextFile("events.txt", this);
     }
 
 }

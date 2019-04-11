@@ -1,4 +1,2 @@
-// Id, Title, Start Date, End Date, Venue, Location (latitude/longitude)
-// NOTE: Attendees are not handled by this file
 "1","Freaky Friday","2/01/2019 1:00:00 AM","2/01/2019 3:00:00 AM","RMIT Capitol Theatre","-37.814795, 144.966119"
 "2","Scary Saturday","3/01/2019 2:00:00 AM","3/01/2019 4:00:00 AM","HOYTS The District Docklands","-37.811363, 144.936967"
