@@ -19,6 +19,9 @@ public class AppEngineImpl implements AppEngine {
     // set up singleton
     private static AppEngineImpl sharedInstance;
 
+    public List<MovieImpl> moviesList;
+    public List<EventImpl> eventLists;
+
     public static AppEngineImpl getSharedInstance() {
         if (sharedInstance == null) {
             sharedInstance = new AppEngineImpl();
@@ -27,11 +30,13 @@ public class AppEngineImpl implements AppEngine {
     }
 
     @Override
-    public void startUp() {
-
+    public void startUp(Context context) {
+        this.moviesList = initMovieList(context);
+        this.eventLists = initEventsList(context);
     }
+
     @Override
-    public List<MovieImpl> getMovieList(Context context) {
+    public List<MovieImpl> initMovieList(Context context) {
         List<MovieImpl> list = new ArrayList<MovieImpl>();
         for (String line : readTextFile("movies.txt",context)) {
             String[] splitedLine = line.split("\",\"");
@@ -45,7 +50,7 @@ public class AppEngineImpl implements AppEngine {
         return list;
     }
     @Override
-    public List<EventImpl> getEventsList(Context context) {
+    public List<EventImpl> initEventsList(Context context) {
         List<EventImpl> list = new ArrayList<EventImpl>();
         for (String line : readTextFile("events.txt",context)) {
             String[] splitedLine = line.split("\",\"");
@@ -90,7 +95,7 @@ public class AppEngineImpl implements AppEngine {
         return lines;
     }
 
-    private void showAlert(String message, Context context) {
+    public void showAlert(String message, Context context) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
         builder1.setMessage(message);
         builder1.setCancelable(true);

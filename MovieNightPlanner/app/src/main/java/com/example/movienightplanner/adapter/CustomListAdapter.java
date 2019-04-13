@@ -16,9 +16,9 @@ import java.util.List;
 public class CustomListAdapter extends ArrayAdapter {
 
     //to reference the Activity
-    private final MainActivity context;
+    private MainActivity context;
 
-    private final List<EventImpl> eventsList;
+    private List<EventImpl> eventsList;
 
     public CustomListAdapter(MainActivity context, List<EventImpl> eventsList){
 
@@ -37,11 +37,11 @@ public class CustomListAdapter extends ArrayAdapter {
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = (TextView) rowView.findViewById(R.id.tittleTextViewID);
         TextView contentTextField = (TextView) rowView.findViewById(R.id.contentTextViewID);
-
+        TextView contentTextField2 = (TextView) rowView.findViewById(R.id.contentTextViewID2);
         //this code sets the values of the objects to values from the list
         nameTextField.setText(eventsList.get(position).getTittle());
-        contentTextField.setText(eventsList.get(position).getStartDate() + " - " + eventsList.get(position).getEndDate());
-
+        contentTextField.setText(eventsList.get(position).getVenue());
+        contentTextField2.setText(eventsList.get(position).getStartDate() + " - " + eventsList.get(position).getEndDate());
         return rowView;
 
     }

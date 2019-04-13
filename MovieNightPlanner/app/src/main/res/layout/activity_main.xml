@@ -4,14 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
     <ListView
         android:id="@+id/listView"
-        android:background="@color/colorPrimary"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:background="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listView"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="+"
+        android:textSize="50sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
 
 </RelativeLayout>
