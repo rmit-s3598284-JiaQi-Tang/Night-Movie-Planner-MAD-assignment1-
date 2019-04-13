@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,tittlesList);
-        arrayAdapter.
         listView.setAdapter(arrayAdapter);
     }
 
