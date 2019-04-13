@@ -34,7 +34,7 @@ public class AppEngineImpl implements AppEngine {
     public List<MovieImpl> getMovieList(Context context) {
         List<MovieImpl> list = new ArrayList<MovieImpl>();
         for (String line : readTextFile("movies.txt",context)) {
-            String[] splitedLine = line.split(",");
+            String[] splitedLine = line.split("\",\"");
             //add lengeth check
             if(splitedLine.length == 4) {
                 list.add(new MovieImpl(splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3]));
@@ -48,11 +48,11 @@ public class AppEngineImpl implements AppEngine {
     public List<EventImpl> getEventsList(Context context) {
         List<EventImpl> list = new ArrayList<EventImpl>();
         for (String line : readTextFile("events.txt",context)) {
-            String[] splitedLine = line.split(",");
+            String[] splitedLine = line.split("\",\"");
             //add length check
-            if(splitedLine.length == 7) {
+            if(splitedLine.length == 6) {
                 //the latitude and longitude was split, so I add them up again
-                list.add(new EventImpl(splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3],splitedLine[4],splitedLine[5] +","+ splitedLine[6]));
+                list.add(new EventImpl(splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3],splitedLine[4],splitedLine[5]));
             } else {
                 showAlert("read txt error occurred", context);
             }

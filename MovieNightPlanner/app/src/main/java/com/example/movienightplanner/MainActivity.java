@@ -19,6 +19,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.movienightplanner.adapter.CustomListAdapter;
 import com.example.movienightplanner.models.AppEngine;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
@@ -33,15 +34,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = findViewById(R.id.listView);
-        ArrayList<String> tittlesList = new ArrayList<>();
-        for(EventImpl event: appEngine.getEventsList(this)) {
-            tittlesList.add(event.getTittle()+" , "+event.getStartDate()+"-"+event.getEndDate());
-        }
+        CustomListAdapter listAdapter = new CustomListAdapter(this, appEngine.getEventsList(this));
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(listAdapter);
 
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,tittlesList);
-        listView.setAdapter(arrayAdapter);
     }
 
 }
