@@ -34,12 +34,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listView);
-        ArrayList<String> arrayList = new ArrayList<>();
+        ArrayList<String> tittlesList = new ArrayList<>();
         for(EventImpl event: appEngine.getEventsList(this)) {
-            arrayList.add(event.getTittle()+" , "+event.getStartDate()+"-"+event.getEndDate() + " , " + event.getLocation());
+            tittlesList.add(event.getTittle()+" , "+event.getStartDate()+"-"+event.getEndDate());
         }
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,tittlesList);
+        arrayAdapter.
         listView.setAdapter(arrayAdapter);
     }
 
