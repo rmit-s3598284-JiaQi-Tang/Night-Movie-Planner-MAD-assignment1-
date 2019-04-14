@@ -11,6 +11,7 @@ public class EventImpl extends AbstructEvent {
     private String endDate;
     private String venue;
     private String location;
+    private MovieImpl movie;
     private List<String> attendees;
 
     public EventImpl(String id, String tittle, String startDate, String endDate, String venue, String location) {
@@ -77,6 +78,16 @@ public class EventImpl extends AbstructEvent {
     }
 
     @Override
+    public MovieImpl getMovie() {
+        return movie;
+    }
+
+    @Override
+    public void setMovie(MovieImpl movie) {
+        this.movie = movie;
+    }
+
+    @Override
     public List<String> getAttendees() {
         return attendees;
     }
@@ -84,4 +95,5 @@ public class EventImpl extends AbstructEvent {
     public void setAttendees(List<String> attendees) {
         this.attendees = attendees;
     }
+
 }

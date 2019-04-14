@@ -67,6 +67,14 @@ public abstract class AbstructEvent implements Event {
     }
 
     @Override
+    public MovieImpl getMovie() { return null; }
+
+    @Override
+    public void setMovie(MovieImpl movie) {
+
+    }
+
+    @Override
 	public List<String> getAttendees() {
 		return null;
 	}

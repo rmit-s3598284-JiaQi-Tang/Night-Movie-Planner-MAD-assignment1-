@@ -12,14 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.movienightplanner.adapter.CustomListAdapter;
+import com.example.movienightplanner.adapter.CustomListAdapter_MainActivityList;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 public class MainActivity extends AppCompatActivity {
 
     AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
     ListView listView;
-    CustomListAdapter listAdapter;
+    CustomListAdapter_MainActivityList listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Movie Night Planner");
         setSupportActionBar(toolbar);
 
-        listAdapter = new CustomListAdapter(this, appEngine.eventLists);
+        listAdapter = new CustomListAdapter_MainActivityList(this, appEngine.eventLists);
         listView = (ListView) findViewById(R.id.listView);
         listAdapter.notifyDataSetChanged();
         listView.setAdapter(listAdapter);

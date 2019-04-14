@@ -17,6 +17,8 @@ public interface Event {
 	void setVenue(String venue);
 	String getLocation();
 	void setLocation(String location);
+	MovieImpl getMovie();
+	void setMovie(MovieImpl movie);
 	List<String> getAttendees();
 	void setAttendees(List<String> attendees);
 	

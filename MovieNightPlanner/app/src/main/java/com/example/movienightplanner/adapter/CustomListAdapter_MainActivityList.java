@@ -1,6 +1,5 @@
 package com.example.movienightplanner.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +12,16 @@ import com.example.movienightplanner.models.EventImpl;
 
 import java.util.List;
 
-public class CustomListAdapter extends ArrayAdapter {
+public class CustomListAdapter_MainActivityList extends ArrayAdapter {
 
     //to reference the Activity
     private MainActivity context;
 
     private List<EventImpl> eventsList;
 
-    public CustomListAdapter(MainActivity context, List<EventImpl> eventsList){
+    public CustomListAdapter_MainActivityList(MainActivity context, List<EventImpl> eventsList){
 
-        super(context, R.layout.listview_row , eventsList);
+        super(context, R.layout.event_listview_row, eventsList);
 
         this.context = context;
 
@@ -32,7 +31,7 @@ public class CustomListAdapter extends ArrayAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.listview_row, null,true);
+        View rowView=inflater.inflate(R.layout.event_listview_row, null,true);
 
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = (TextView) rowView.findViewById(R.id.tittleTextViewID);

@@ -60,13 +60,24 @@ public class EventDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.menuEdit:
 
-                Intent intent = new Intent(EventDetailActivity.this, EditEventActivity.class);
+            case R.id.addOrChangeMovie:
+
+                Intent intent1 = new Intent(EventDetailActivity.this, MoviesActivity.class);
 
                 //pass the position integer as parameter
-                intent.putExtra("position", eventPosition);
-                startActivity(intent);
+                intent1.putExtra("position", eventPosition);
+                startActivity(intent1);
+                Toast.makeText(this, "Edit Event", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menuEdit:
+
+                Intent intent2 = new Intent(EventDetailActivity.this, EditEventActivity.class);
+
+                //pass the position integer as parameter
+                intent2.putExtra("position", eventPosition);
+                startActivity(intent2);
                 Toast.makeText(this, "Edit Event", Toast.LENGTH_SHORT).show();
                 break;
 
