@@ -1,49 +1,38 @@
 package com.example.movienightplanner;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.movienightplanner.adapter.CustomListAdapter;
-import com.example.movienightplanner.models.AppEngine;
 import com.example.movienightplanner.models.AppEngineImpl;
-import com.example.movienightplanner.models.EventImpl;
-import com.example.movienightplanner.models.Movie;
-import com.example.movienightplanner.models.MovieImpl;
 
 public class MainActivity extends AppCompatActivity {
 
     AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
     ListView listView;
-    Button addNewButton;
     CustomListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        //initialise read txt files
         appEngine.startUp(this);
+
+        //toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Movie Night Planner");
+        setSupportActionBar(toolbar);
 
         listAdapter = new CustomListAdapter(this, appEngine.eventLists);
         listView = (ListView) findViewById(R.id.listView);
@@ -60,21 +49,45 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        addNewButton = (Button) findViewById(R.id.addButton);
-        addNewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AddEventActivity.class));
-            }
-        });
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    //define menu actions
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.menuAddNew:
+                startActivity(new Intent(MainActivity.this, AddEventActivity.class));
+                Toast.makeText(this, "Please fill the details", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menuViewCalendar:
+                Toast.makeText(this, "Calendar View", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menuAscending:
+                Toast.makeText(this, "Ascending Events", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menuDescending:
+                Toast.makeText(this, "Descending Events", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return true;
+    }
+
+    //to update the listview
+    @Override
     protected void onResume(){
         super.onResume();
-
-        //to update the listview
         listAdapter.notifyDataSetChanged();
     }
 
