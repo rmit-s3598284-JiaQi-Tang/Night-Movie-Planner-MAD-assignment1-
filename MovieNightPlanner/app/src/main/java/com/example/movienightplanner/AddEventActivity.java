@@ -1,5 +1,7 @@
 package com.example.movienightplanner;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,9 +37,40 @@ public class AddEventActivity extends AppCompatActivity {
         addNewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventImpl newEvents = new EventImpl(""+appEngine.eventLists.size(), tittleText.getText().toString(), startDateText.getText().toString(), endDateText.getText().toString(), venueText.getText().toString(), locationText.getText().toString());
-                appEngine.eventLists.add(newEvents);
-                appEngine.showAlert("A new event has been created !", AddEventActivity.this);
+
+                //check if input was empty
+                if(tittleText.getText().toString().isEmpty()) {
+                    appEngine.showAlert("Tittle can not be empty !", AddEventActivity.this);
+                } else if(startDateText.getText().toString().isEmpty()){
+                    appEngine.showAlert("Start date can not be empty !", AddEventActivity.this);
+                } else if(endDateText.getText().toString().isEmpty()) {
+                    appEngine.showAlert("End date can not be empty !", AddEventActivity.this);
+                } else if(venueText.getText().toString().isEmpty()) {
+                    appEngine.showAlert("Venue can not be empty !", AddEventActivity.this);
+                } else if(locationText.getText().toString().isEmpty()) {
+                    appEngine.showAlert("Location can not be empty !", AddEventActivity.this);
+                } else {
+                    EventImpl newEvents = new EventImpl(""+appEngine.eventLists.size(), tittleText.getText().toString(), startDateText.getText().toString(), endDateText.getText().toString(), venueText.getText().toString(), locationText.getText().toString());
+                    appEngine.eventLists.add(newEvents);
+
+                    //show alert to tell the new event created
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(AddEventActivity.this);
+                    builder1.setMessage("A new event has been created !");
+                    builder1.setCancelable(true);
+
+                    builder1.setPositiveButton(
+                            "ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    onBackPressed();
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }
+
             }
         });
     }
