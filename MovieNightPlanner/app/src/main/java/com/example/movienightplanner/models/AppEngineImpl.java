@@ -22,6 +22,8 @@ public class AppEngineImpl implements AppEngine {
     public List<MovieImpl> moviesList;
     public List<EventImpl> eventLists;
 
+    private boolean dataRead = false;
+
     public static AppEngineImpl getSharedInstance() {
         if (sharedInstance == null) {
             sharedInstance = new AppEngineImpl();
@@ -33,6 +35,14 @@ public class AppEngineImpl implements AppEngine {
     public void startUp(Context context) {
         this.moviesList = initMovieList(context);
         this.eventLists = initEventsList(context);
+
+        //we only read the txt files once
+        dataRead = true;
+    }
+
+    @Override
+    public boolean getDataRead() {
+        return dataRead;
     }
 
     @Override

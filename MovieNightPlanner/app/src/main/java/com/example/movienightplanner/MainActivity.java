@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //initialise read txt files
-        appEngine.startUp(this);
+        //initialise read txt files, but we only read once
+        if(!appEngine.getDataRead()) {
+            appEngine.startUp(this);
+        }
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
