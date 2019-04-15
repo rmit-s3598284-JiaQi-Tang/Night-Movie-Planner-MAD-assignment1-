@@ -7,10 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.movienightplanner.MainActivity;
 import com.example.movienightplanner.MoviesActivity;
 import com.example.movienightplanner.R;
-import com.example.movienightplanner.models.EventImpl;
 import com.example.movienightplanner.models.MovieImpl;
 
 import java.util.List;
@@ -41,8 +39,12 @@ public class CustomListAdapter_MoviesActivityList extends ArrayAdapter {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView1ID);
         TextView name = (TextView) rowView.findViewById(R.id.nameTextViewID);
         TextView year = (TextView) rowView.findViewById(R.id.infoTextViewID);
+
         //this code sets the values of the objects to values from the list
-//        imageView = imageView.setImageResource(moviesList.get(position).getPosterImageName());
+        String imageName = moviesList.get(position).getPosterImageName().replace(".jpg", "");
+        System.out.println(imageName);
+        int resID = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+        imageView.setImageResource(resID);
         name.setText(moviesList.get(position).getTittle());
         year.setText(moviesList.get(position).getYear());
         return rowView;

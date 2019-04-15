@@ -52,7 +52,7 @@ public class AppEngineImpl implements AppEngine {
             String[] splitedLine = line.split("\",\"");
             //add lengeth check
             if(splitedLine.length == 4) {
-                list.add(new MovieImpl(splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3]));
+                list.add(new MovieImpl(splitedLine[0].replace("\"", ""),splitedLine[1].replace("\"", ""),splitedLine[2].replace("\"", ""),splitedLine[3].replace("\"", "")));
             } else {
                 showAlert("read txt error occurred", context);
             }
@@ -67,7 +67,7 @@ public class AppEngineImpl implements AppEngine {
             //add length check
             if(splitedLine.length == 6) {
                 //the latitude and longitude was split, so I add them up again
-                list.add(new EventImpl(splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3],splitedLine[4],splitedLine[5]));
+                list.add(new EventImpl(splitedLine[0].replace("\"", ""),splitedLine[1].replace("\"", ""),splitedLine[2].replace("\"", ""),splitedLine[3].replace("\"", ""),splitedLine[4].replace("\"", ""),splitedLine[5].replace("\"", "")));
             } else {
                 showAlert("read txt error occurred", context);
             }
