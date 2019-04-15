@@ -1,2 +1,2 @@
-"1","Blade Runner","1982","bladerunner1982.jpg"
-"2","Hackers","1995","hackers.jpg"
+"1","Blade Runner","1982","BladeRunner1982.jpg"
+"2","Hackers","1995","Hackers.jpg"

@@ -7,10 +7,12 @@ package com.example.movienightplanner;
         import android.view.Menu;
         import android.view.MenuInflater;
         import android.view.MenuItem;
+        import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
 
         import com.example.movienightplanner.models.AppEngineImpl;
+        import com.example.movienightplanner.models.MovieImpl;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -21,6 +23,10 @@ public class EventDetailActivity extends AppCompatActivity {
     TextView venueText;
     TextView startDateText;
     TextView endDateText;
+
+    ImageView movieImage;
+    TextView movieNameText;
+    TextView movieInfoText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,21 @@ public class EventDetailActivity extends AppCompatActivity {
 
         endDateText = (TextView) findViewById(R.id.endDateID);
         endDateText.setText("End Date: " + appEngine.eventLists.get(eventPosition).getEndDate());
+
+        if(appEngine.eventLists.get(eventPosition).getMovie() != null) {
+
+            movieImage = (ImageView) findViewById(R.id.movieImageView1ID);
+            String imageName = appEngine.eventLists.get(eventPosition).getMovie().getPosterImageName().replace(".jpg", "").toLowerCase().trim();
+            int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+            movieImage.setImageResource(resID);
+
+            movieNameText = (TextView) findViewById(R.id.movieNameTextViewID);
+            movieNameText.setText(appEngine.eventLists.get(eventPosition).getMovie().getTittle());
+
+            movieInfoText = (TextView) findViewById(R.id.movieInfoTextViewID);
+            movieInfoText.setText(appEngine.eventLists.get(eventPosition).getMovie().getYear());
+
+        }
     }
 
     @Override

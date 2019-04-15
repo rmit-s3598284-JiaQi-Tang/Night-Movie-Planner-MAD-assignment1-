@@ -41,8 +41,7 @@ public class CustomListAdapter_MoviesActivityList extends ArrayAdapter {
         TextView year = (TextView) rowView.findViewById(R.id.infoTextViewID);
 
         //this code sets the values of the objects to values from the list
-        String imageName = moviesList.get(position).getPosterImageName().replace(".jpg", "");
-        System.out.println(imageName);
+        String imageName = moviesList.get(position).getPosterImageName().replace(".jpg", "").toLowerCase().trim();
         int resID = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
         imageView.setImageResource(resID);
         name.setText(moviesList.get(position).getTittle());
