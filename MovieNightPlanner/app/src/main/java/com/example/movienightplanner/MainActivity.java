@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.menuViewCalendar:
+                startActivity(new Intent(MainActivity.this, CalendarViewActivity.class));
                 Toast.makeText(this, "Calendar View", Toast.LENGTH_SHORT).show();
                 break;
 
