@@ -21,6 +21,7 @@ package com.example.movienightplanner;
 public class EventDetailActivity extends AppCompatActivity {
 
     int eventPosition;
+    ArrayAdapter<String> adapter;
     AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
     TextView venueText;
@@ -71,7 +72,7 @@ public class EventDetailActivity extends AppCompatActivity {
         }
 
         this.listView = (ListView) findViewById(R.id.attentessListID);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appEngine.eventLists.get(eventPosition).getAttendees());
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appEngine.eventLists.get(eventPosition).getAttendees());
         listView.setAdapter(adapter);
 
 
@@ -135,7 +136,7 @@ public class EventDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-
+        adapter.notifyDataSetChanged();
     }
 
 }
