@@ -37,10 +37,13 @@ public class CustomListAdapter_MainActivityList extends ArrayAdapter {
         TextView nameTextField = (TextView) rowView.findViewById(R.id.tittleTextViewID);
         TextView contentTextField = (TextView) rowView.findViewById(R.id.contentTextViewID);
         TextView contentTextField2 = (TextView) rowView.findViewById(R.id.contentTextViewID2);
+        TextView attendeeTextField = (TextView) rowView.findViewById(R.id.attendeeNumbersTextViewID);
+
         //this code sets the values of the objects to values from the list
         nameTextField.setText(eventsList.get(position).getTittle());
         contentTextField.setText(eventsList.get(position).getVenue());
         contentTextField2.setText(eventsList.get(position).getStartDate() + " - " + eventsList.get(position).getEndDate());
+        attendeeTextField.setText("Attendees: " + eventsList.get(position).getAttendees().size());
         return rowView;
 
     }

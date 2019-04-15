@@ -118,4 +118,12 @@
         android:text="Attendees: "
         android:textSize="30sp"/>
 
+    <ListView
+        android:id="@+id/attentessListID"
+        android:layout_below="@id/hardAttendeesID"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </RelativeLayout>

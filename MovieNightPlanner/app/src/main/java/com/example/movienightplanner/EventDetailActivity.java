@@ -1,13 +1,17 @@
 package com.example.movienightplanner;
 
         import android.content.Intent;
+        import android.database.Cursor;
+        import android.provider.ContactsContract;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.support.v7.widget.Toolbar;
         import android.view.Menu;
         import android.view.MenuInflater;
         import android.view.MenuItem;
+        import android.widget.ArrayAdapter;
         import android.widget.ImageView;
+        import android.widget.ListView;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -19,7 +23,6 @@ public class EventDetailActivity extends AppCompatActivity {
     int eventPosition;
     AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
-//    TextView tittleText;
     TextView venueText;
     TextView startDateText;
     TextView endDateText;
@@ -27,6 +30,8 @@ public class EventDetailActivity extends AppCompatActivity {
     ImageView movieImage;
     TextView movieNameText;
     TextView movieInfoText;
+
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +45,6 @@ public class EventDetailActivity extends AppCompatActivity {
 
         //get the position integer parameter from MainActivity
         eventPosition = getIntent().getIntExtra("position", 1);
-
-//        tittleText = (TextView) findViewById(R.id.tittleID);
-//        tittleText.setText(appEngine.eventLists.get(eventPosition).getTittle());
 
         venueText = (TextView) findViewById(R.id.venueID);
         venueText.setText("At: " + appEngine.eventLists.get(eventPosition).getVenue());
@@ -67,6 +69,12 @@ public class EventDetailActivity extends AppCompatActivity {
             movieInfoText.setText(appEngine.eventLists.get(eventPosition).getMovie().getYear());
 
         }
+
+        this.listView = (ListView) findViewById(R.id.attentessListID);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, appEngine.eventLists.get(eventPosition).getAttendees());
+        listView.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -93,7 +101,11 @@ public class EventDetailActivity extends AppCompatActivity {
                 break;
 
             case R.id.addAttendees:
+                Intent intent3 = new Intent(EventDetailActivity.this, ContactsActivity.class);
 
+                //pass the position integer as parameter
+                intent3.putExtra("position", eventPosition);
+                startActivity(intent3);
                 Toast.makeText(this, "Add Attendees", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -125,4 +137,5 @@ public class EventDetailActivity extends AppCompatActivity {
         super.onResume();
 
     }
+
 }
