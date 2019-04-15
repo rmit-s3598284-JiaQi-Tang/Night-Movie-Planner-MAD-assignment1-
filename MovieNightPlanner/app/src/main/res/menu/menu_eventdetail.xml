@@ -6,6 +6,10 @@
         android:title="Add/Change Moive" />
 
     <item
+        android:id="@+id/addAttendees"
+        android:title="Add Attendees" />
+
+    <item
         android:id="@+id/menuEdit"
         android:title="Edit" />
 

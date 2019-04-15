@@ -19,7 +19,7 @@ public class EventDetailActivity extends AppCompatActivity {
     int eventPosition;
     AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
-    TextView tittleText;
+//    TextView tittleText;
     TextView venueText;
     TextView startDateText;
     TextView endDateText;
@@ -35,14 +35,14 @@ public class EventDetailActivity extends AppCompatActivity {
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Event");
+        toolbar.setTitle(appEngine.eventLists.get(eventPosition).getTittle());
         setSupportActionBar(toolbar);
 
         //get the position integer parameter from MainActivity
         eventPosition = getIntent().getIntExtra("position", 1);
 
-        tittleText = (TextView) findViewById(R.id.tittleID);
-        tittleText.setText(appEngine.eventLists.get(eventPosition).getTittle());
+//        tittleText = (TextView) findViewById(R.id.tittleID);
+//        tittleText.setText(appEngine.eventLists.get(eventPosition).getTittle());
 
         venueText = (TextView) findViewById(R.id.venueID);
         venueText.setText("At: " + appEngine.eventLists.get(eventPosition).getVenue());
@@ -89,7 +89,12 @@ public class EventDetailActivity extends AppCompatActivity {
                 //pass the position integer as parameter
                 intent1.putExtra("position", eventPosition);
                 startActivity(intent1);
-                Toast.makeText(this, "Edit Event", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Select A Movie", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.addAttendees:
+
+                Toast.makeText(this, "Add Attendees", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.menuEdit:
