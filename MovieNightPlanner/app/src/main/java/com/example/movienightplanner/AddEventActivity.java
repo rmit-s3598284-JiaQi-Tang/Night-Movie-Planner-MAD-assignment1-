@@ -49,8 +49,11 @@ public class AddEventActivity extends AppCompatActivity {
                     appEngine.showAlert("Venue can not be empty !", AddEventActivity.this);
                 } else if(locationText.getText().toString().isEmpty()) {
                     appEngine.showAlert("Location can not be empty !", AddEventActivity.this);
+                } else if(!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
+                    appEngine.showAlert("Please follow the date time format: 2/01/2019 3:00:00 AM ", AddEventActivity.this);
                 } else {
                     EventImpl newEvents = new EventImpl(""+appEngine.eventLists.size(), tittleText.getText().toString(), startDateText.getText().toString(), endDateText.getText().toString(), venueText.getText().toString(), locationText.getText().toString());
+                    newEvents.setDateTime(appEngine.convertToDate(newEvents.getStartDate()));
                     appEngine.eventLists.add(newEvents);
 
                     //show alert to tell the new event created

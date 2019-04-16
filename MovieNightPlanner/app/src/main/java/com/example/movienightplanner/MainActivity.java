@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -76,10 +77,24 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.menuAscending:
+
+                appEngine.ascendEvents();
+
+                listAdapter = new CustomListAdapter_MainActivityList(this, appEngine.eventLists);
+                listAdapter.notifyDataSetChanged();
+                listView.setAdapter(listAdapter);
+
                 Toast.makeText(this, "Ascending Events", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.menuDescending:
+
+                appEngine.descendEvents();
+
+                listAdapter = new CustomListAdapter_MainActivityList(this, appEngine.eventLists);
+                listAdapter.notifyDataSetChanged();
+                listView.setAdapter(listAdapter);
+
                 Toast.makeText(this, "Descending Events", Toast.LENGTH_SHORT).show();
                 break;
 

@@ -1,6 +1,7 @@
 package com.example.movienightplanner.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EventImpl extends AbstructEvent {
@@ -13,6 +14,8 @@ public class EventImpl extends AbstructEvent {
     private String location;
     private MovieImpl movie;
     private List<String> attendees;
+    private Date dateTime;
+
 
     public EventImpl(String id, String tittle, String startDate, String endDate, String venue, String location) {
         this.id = id;
@@ -22,6 +25,7 @@ public class EventImpl extends AbstructEvent {
         this.venue = venue;
         this.location = location;
         this.attendees = new ArrayList<>();
+        this.dateTime = new Date();
     }
 
     @Override
@@ -94,6 +98,14 @@ public class EventImpl extends AbstructEvent {
 
     public void setAttendees(List<String> attendees) {
         this.attendees = attendees;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
 }

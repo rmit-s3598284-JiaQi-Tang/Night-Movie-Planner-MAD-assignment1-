@@ -9,7 +9,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -67,7 +72,9 @@ public class AppEngineImpl implements AppEngine {
             //add length check
             if(splitedLine.length == 6) {
                 //the latitude and longitude was split, so I add them up again
-                list.add(new EventImpl(splitedLine[0].replace("\"", ""),splitedLine[1].replace("\"", ""),splitedLine[2].replace("\"", ""),splitedLine[3].replace("\"", ""),splitedLine[4].replace("\"", ""),splitedLine[5].replace("\"", "")));
+                EventImpl newEvent = new EventImpl(splitedLine[0].replace("\"", ""),splitedLine[1].replace("\"", ""),splitedLine[2].replace("\"", ""),splitedLine[3].replace("\"", ""),splitedLine[4].replace("\"", ""),splitedLine[5].replace("\"", ""));
+                newEvent.setDateTime(convertToDate(newEvent.getStartDate()));
+                list.add(newEvent);
             } else {
                 showAlert("read txt error occurred", context);
             }
@@ -103,6 +110,45 @@ public class AppEngineImpl implements AppEngine {
             Log.d(TAG, ex.getMessage());
         }
         return lines;
+    }
+
+    public Date convertToDate(String inputDate) {
+        Date date = new Date();
+        SimpleDateFormat formater = new SimpleDateFormat("d/MM/yyyy h:mm:ss");
+        try {
+            date = formater.parse(inputDate);
+        } catch (ParseException ex) {
+            Log.v("Exception", ex.getLocalizedMessage());
+        }
+        return date;
+    }
+
+    public void ascendEvents() {
+        Collections.sort(eventLists, new Comparator<EventImpl>() {
+            public int compare(EventImpl o1, EventImpl o2) {
+                return o1.getDateTime().compareTo(o2.getDateTime());
+            }
+        });
+    }
+
+    public void descendEvents() {
+        Collections.sort(eventLists, new Comparator<EventImpl>() {
+            public int compare(EventImpl o1, EventImpl o2) {
+                return o2.getDateTime().compareTo(o1.getDateTime());
+            }
+        });
+    }
+
+    public boolean isValidDate(String date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy h:mm:ss");
+        boolean flag = true;
+
+        try{
+            dateFormat.parse(date);
+        }catch(ParseException e){
+            flag = false;
+        }
+        return flag;
     }
 
     public void showAlert(String message, Context context) {

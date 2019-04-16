@@ -64,6 +64,8 @@ public class EditEventActivity extends AppCompatActivity {
                     appEngine.showAlert("Venue can not be empty !", EditEventActivity.this);
                 } else if(locationText.getText().toString().isEmpty()) {
                     appEngine.showAlert("Location can not be empty !", EditEventActivity.this);
+                } else if(!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
+                    appEngine.showAlert("Please follow the date time format: 2/01/2019 3:00:00 AM ", EditEventActivity.this);
                 } else {
 
                     appEngine.eventLists.get(eventPosition).setTittle(tittleText.getText().toString());
@@ -71,6 +73,7 @@ public class EditEventActivity extends AppCompatActivity {
                     appEngine.eventLists.get(eventPosition).setEndDate(endDateText.getText().toString());
                     appEngine.eventLists.get(eventPosition).setVenue(venueText.getText().toString());
                     appEngine.eventLists.get(eventPosition).setLocation(locationText.getText().toString());
+                    appEngine.eventLists.get(eventPosition).setDateTime(appEngine.convertToDate(appEngine.eventLists.get(eventPosition).getStartDate()));
 
                     //show alert to tell the new event created
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(EditEventActivity.this);
