@@ -81,9 +81,7 @@ public class ContactsActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
-                                    Intent intent = new Intent(ContactsActivity.this, MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
+                                    onBackPressed();
                                 }
                             });
 
