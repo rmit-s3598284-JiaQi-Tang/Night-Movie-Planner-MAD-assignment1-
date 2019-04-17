@@ -24,9 +24,9 @@ import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity {
 
-    AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
+    public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
     private ListView listView;
-    List<String> contactsList;
+    private List<String> contactsList;
 
     // Request code for READ_CONTACTS. It can be any number > 0.
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;

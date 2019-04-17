@@ -13,7 +13,8 @@ import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
 
 public class AddEventActivity extends AppCompatActivity {
-    AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
+
+    public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

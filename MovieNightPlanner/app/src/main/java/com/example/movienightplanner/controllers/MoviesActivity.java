@@ -15,9 +15,9 @@ import com.example.movienightplanner.models.AppEngineImpl;
 
 public class MoviesActivity extends AppCompatActivity {
 
-    AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
-    ListView listView;
-    CustomListAdapter_MoviesActivityList listAdapter;
+    public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
+    private ListView listView;
+    private CustomListAdapter_MoviesActivityList listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

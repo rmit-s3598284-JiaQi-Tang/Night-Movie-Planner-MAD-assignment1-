@@ -22,7 +22,7 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
 
     private List<EventImpl> eventsList;
 
-    List<DayBean> beans;
+    private List<DayBean> beans;
 
     public CustomListAdapter_DayGrids(CalendarViewActivity context, List<DayBean> beans) {
 

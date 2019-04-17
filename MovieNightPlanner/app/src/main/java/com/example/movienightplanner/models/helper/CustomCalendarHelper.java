@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CustomCalendarHelper {
 
-    static Calendar calendar = Calendar.getInstance();
+    private static Calendar calendar = Calendar.getInstance();
 
     //get numbers of days of current month
     public static int getCurrentMonthDay(long millSec) {

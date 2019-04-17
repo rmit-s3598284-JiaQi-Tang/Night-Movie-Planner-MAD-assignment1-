@@ -22,17 +22,17 @@ import com.example.movienightplanner.models.AppEngineImpl;
 
 public class EventDetailActivity extends AppCompatActivity {
 
-    int eventPosition;
-    ArrayAdapter<String> adapter;
-    AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
+    private int eventPosition;
+    private ArrayAdapter<String> adapter;
+    public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
-    TextView venueText;
-    TextView startDateText;
-    TextView endDateText;
+    private TextView venueText;
+    private TextView startDateText;
+    private TextView endDateText;
 
-    ImageView movieImage;
-    TextView movieNameText;
-    TextView movieInfoText;
+    private ImageView movieImage;
+    private TextView movieNameText;
+    private TextView movieInfoText;
 
     ListView listView;
 

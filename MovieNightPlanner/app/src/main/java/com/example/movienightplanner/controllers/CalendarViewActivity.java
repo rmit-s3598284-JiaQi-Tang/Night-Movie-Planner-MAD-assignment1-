@@ -16,11 +16,10 @@ import android.widget.Toast;
 
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.controllers.adapter.CustomListAdapter_DayGrids;
-import com.example.movienightplanner.controllers.adapter.CustomListAdapter_MainActivityList;
-import com.example.movienightplanner.models.helper.CustomCalendarHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.DayBean;
 import com.example.movienightplanner.models.EventImpl;
+import com.example.movienightplanner.models.helper.CustomCalendarHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,14 +27,14 @@ import java.util.List;
 
 public class CalendarViewActivity extends AppCompatActivity {
 
-    AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
+    public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
-    ImageView preMonth;
-    ImageView nextMonth;
-    TextView currentDate;
-    GridView calendarGrids;
-    List<DayBean> beans;
-    CustomListAdapter_DayGrids adapter;
+    private ImageView preMonth;
+    private ImageView nextMonth;
+    private TextView currentDate;
+    private GridView calendarGrids;
+    private List<DayBean> beans;
+    private CustomListAdapter_DayGrids adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

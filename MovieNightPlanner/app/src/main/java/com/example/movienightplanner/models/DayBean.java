@@ -4,10 +4,10 @@ import java.util.Calendar;
 
 public class DayBean implements Day {
 
-    Boolean isCurrentMonth = false;
-    Boolean hasEvent = false;
-    int day;
-    Calendar calendar;
+    private Boolean isCurrentMonth = false;
+    private Boolean hasEvent = false;
+    private int day;
+    private Calendar calendar;
 
     @Override
     public boolean getIsCurrentMonth() {
