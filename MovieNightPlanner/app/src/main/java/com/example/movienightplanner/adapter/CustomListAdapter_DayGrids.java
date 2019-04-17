@@ -49,16 +49,16 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.day_text.setText(beans.get(position).getDay() + "");
-        if (beans.get(position).isToday()) {
+        holder.day_text.setText("" + beans.get(position).getDay());
+        if (beans.get(position).hasEvent()) {
             holder.day_text.setBackgroundColor(Color.RED);
         } else {
-            holder.day_text.setBackgroundColor(Color.WHITE);
+            holder.day_text.setBackgroundColor(Color.DKGRAY);
         }
         if (beans.get(position).isCurrentMonth()) {
-            holder.day_text.setTextColor(Color.BLACK);
+            holder.day_text.setTextColor(Color.WHITE);
         } else {
-            holder.day_text.setTextColor(Color.GRAY);
+            holder.day_text.setTextColor(Color.DKGRAY);
         }
 
         return convertView;

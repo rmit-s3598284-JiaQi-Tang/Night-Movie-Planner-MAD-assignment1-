@@ -8,7 +8,7 @@ import java.util.Date;
 public class DayBean {
 
     Boolean isCurrentMonth = false;
-    Boolean isToday = false;
+    Boolean hasEvent = false;
     int day;
     Calendar calendar;
 
@@ -36,7 +36,11 @@ public class DayBean {
         this.calendar = calendar;
     }
 
-    public boolean isToday() {
-        return isToday;
+    public boolean hasEvent() {
+        return hasEvent;
+    }
+
+    public void setHasEvent(Boolean bool) {
+        this.hasEvent = bool;
     }
 }

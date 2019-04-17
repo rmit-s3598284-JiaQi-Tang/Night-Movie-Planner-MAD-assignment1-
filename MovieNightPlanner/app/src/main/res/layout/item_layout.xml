@@ -8,8 +8,11 @@
         android:id="@+id/day_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#d8ecd8"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="7dp"
+        android:gravity="center_horizontal"
         android:padding="10dp"
         />
 

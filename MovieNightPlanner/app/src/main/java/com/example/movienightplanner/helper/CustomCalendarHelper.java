@@ -1,12 +1,15 @@
 package com.example.movienightplanner.helper;
 
         import android.content.Context;
+        import android.text.format.DateUtils;
         import android.util.Log;
         import android.widget.GridView;
 
         import com.example.movienightplanner.adapter.CustomListAdapter_DayGrids;
         import com.example.movienightplanner.controllers.CalendarViewActivity;
+        import com.example.movienightplanner.models.AppEngineImpl;
         import com.example.movienightplanner.models.DayBean;
+        import com.example.movienightplanner.models.EventImpl;
 
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
@@ -15,8 +18,8 @@ package com.example.movienightplanner.helper;
 
 public class CustomCalendarHelper {
 
-    static int count = 0;
     static Calendar calendar = Calendar.getInstance();
+
     //get numbers of days of current month
     public static int getCurrentMonthDay(long millSec) {
         calendar.setTimeInMillis(millSec);
@@ -43,16 +46,16 @@ public class CustomCalendarHelper {
     }
 
     //get last month
-    public static long getLastMonth(long millSec) {
-        count -=1;
+    public static long getLastMonth(long millSec, int count) {
+
         calendar.setTimeInMillis(millSec);
         calendar.add(Calendar.MONTH, count);
         return calendar.getTimeInMillis();
     }
 
     //get next month
-    public static long getNextMonth(long millSec) {
-        count +=1;
+    public static long getNextMonth(long millSec, int count) {
+
         calendar.setTimeInMillis(millSec);
         calendar.add(Calendar.MONTH, count);
         return calendar.getTimeInMillis();
@@ -67,11 +70,10 @@ public class CustomCalendarHelper {
         return sdf.format(new Date(millSec));
     }
 
-    public static void setCalendarList(long millSecs, List<DayBean> beans, GridView calendarGrids, CalendarViewActivity context) {
+    public static void setCalendarList(long millSecs, List<DayBean> beans, GridView calendarGrids, CustomListAdapter_DayGrids adapter , CalendarViewActivity context) {
         beans.clear();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millSecs);
-
         int max = CustomCalendarHelper.getCurrentMonthDay(millSecs);
 
         //calendar of this month
@@ -82,8 +84,20 @@ public class CustomCalendarHelper {
             cc.add(Calendar.DAY_OF_MONTH, i - 1);
             setBean(bean, cc);
             bean.setIsCurrentMonth(true);
+
+            //check if there is a event on that day
+            AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
+
+            for(EventImpl event : appEngine.eventLists) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                if(sdf.format(event.getDateTime()).equals(sdf.format(cc.getTime()))) {
+                    bean.setHasEvent(true);
+                }
+            }
+
             beans.add(bean);
         }
+
         //calculate which days are from last month
         int fir_day_of_week = beans.get(0).getCalendar().get(Calendar.DAY_OF_WEEK);
         Log.e("AAA", "week_last:" + fir_day_of_week);
@@ -128,8 +142,9 @@ public class CustomCalendarHelper {
                 beans.add(bean);
             }
         }
-        CustomListAdapter_DayGrids adapter = new CustomListAdapter_DayGrids(context, beans);
+        adapter = new CustomListAdapter_DayGrids(context, beans);
         calendarGrids.setAdapter(adapter);
+
     }
 
     private static void setBean(DayBean bean, Calendar cc) {

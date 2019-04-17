@@ -40,24 +40,25 @@ public class CalendarViewActivity extends AppCompatActivity {
         currentDate = findViewById(R.id.display_current_date);
         calendarGrids = findViewById(R.id.calendar_grid);
 
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
-        currentDate.setText(dateFormat.format(date));
+//        Calendar calendar = Calendar.getInstance();
+//        Date date = calendar.getTime();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
+//        currentDate.setText(dateFormat.format(date));
+        currentDate.setText(CustomCalendarHelper.long2str(CustomCalendarHelper.getCurrentTime()));
 
         //display dates of this month
         beans = new ArrayList<DayBean>();
-        CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getCurrentTime(), beans, calendarGrids, this);
-        adapter = new CustomListAdapter_DayGrids(this, beans);
-        calendarGrids.setAdapter(adapter);
+        CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getFirOfMonth(CustomCalendarHelper.getCurrentTime()), beans, calendarGrids, adapter,this);
+//        adapter = new CustomListAdapter_DayGrids(this, beans);
+//        calendarGrids.setAdapter(adapter);
 
         //show last month
         preMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getLastMonth(CustomCalendarHelper.getCurrentTime()), beans,calendarGrids,CalendarViewActivity.this);
+                CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getFirOfMonth(CustomCalendarHelper.getLastMonth(CustomCalendarHelper.getCurrentTime(),-1)), beans,calendarGrids, adapter,CalendarViewActivity.this);
                 currentDate.setText(CustomCalendarHelper.long2str(CustomCalendarHelper.getCurrentTime()));
-                adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
             }
         });
 
@@ -65,9 +66,9 @@ public class CalendarViewActivity extends AppCompatActivity {
         nextMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getNextMonth(CustomCalendarHelper.getCurrentTime()), beans,calendarGrids,CalendarViewActivity.this);
+                CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getFirOfMonth(CustomCalendarHelper.getNextMonth(CustomCalendarHelper.getCurrentTime(),1)), beans,calendarGrids,adapter,CalendarViewActivity.this);
                 currentDate.setText(CustomCalendarHelper.long2str(CustomCalendarHelper.getCurrentTime()));
-                adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
             }
         });
 
