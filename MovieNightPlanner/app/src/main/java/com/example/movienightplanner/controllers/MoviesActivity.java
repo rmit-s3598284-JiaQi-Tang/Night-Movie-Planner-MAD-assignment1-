@@ -1,4 +1,4 @@
-package com.example.movienightplanner;
+package com.example.movienightplanner.controllers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.movienightplanner.adapter.CustomListAdapter_MainActivityList;
+import com.example.movienightplanner.R;
 import com.example.movienightplanner.adapter.CustomListAdapter_MoviesActivityList;
 import com.example.movienightplanner.models.AppEngineImpl;
 

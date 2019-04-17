@@ -1,4 +1,4 @@
-package com.example.movienightplanner;
+package com.example.movienightplanner.controllers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.movienightplanner.R;
 import com.example.movienightplanner.models.AppEngineImpl;
-import com.example.movienightplanner.models.EventImpl;
 
 public class EditEventActivity extends AppCompatActivity {
 

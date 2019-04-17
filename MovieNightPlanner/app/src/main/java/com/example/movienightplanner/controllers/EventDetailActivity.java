@@ -1,10 +1,8 @@
-package com.example.movienightplanner;
+package com.example.movienightplanner.controllers;
 
         import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
-        import android.database.Cursor;
-        import android.provider.ContactsContract;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.support.v7.widget.Toolbar;
@@ -19,8 +17,8 @@ package com.example.movienightplanner;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.movienightplanner.R;
         import com.example.movienightplanner.models.AppEngineImpl;
-        import com.example.movienightplanner.models.MovieImpl;
 
 public class EventDetailActivity extends AppCompatActivity {
 

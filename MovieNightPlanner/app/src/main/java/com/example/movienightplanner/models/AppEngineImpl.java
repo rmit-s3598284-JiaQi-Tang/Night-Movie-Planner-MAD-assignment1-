@@ -2,7 +2,7 @@ package com.example.movienightplanner.models;
 
 import android.util.Log;
 import android.app.AlertDialog;
-import com.example.movienightplanner.MainActivity;
+import com.example.movienightplanner.controllers.MainActivity;
 import android.content.DialogInterface;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
-import android.content.res.AssetManager;
+
 public class AppEngineImpl implements AppEngine {
 
     // set up singleton

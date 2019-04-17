@@ -1,10 +1,9 @@
-package com.example.movienightplanner;
+package com.example.movienightplanner.controllers;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
@@ -17,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.movienightplanner.R;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 import java.util.ArrayList;

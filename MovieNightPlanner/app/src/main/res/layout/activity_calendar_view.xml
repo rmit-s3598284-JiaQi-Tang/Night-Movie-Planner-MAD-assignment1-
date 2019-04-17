@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CalendarViewActivity">
+    tools:context=".controllers.CalendarViewActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +30,7 @@
             android:text="@string/current_date"
             android:layout_marginTop="4dp"
             android:textStyle="bold"
+            android:textSize="30sp"
             android:layout_weight="3"/>
         <ImageView
             android:id="@+id/next_month"
@@ -40,14 +41,6 @@
             android:src="@drawable/forwardbutton"
             android:layout_weight="1"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/add_calendar_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:text="@string/add_event"
-        android:gravity="center"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,5 +123,5 @@
         android:id="@+id/calendar_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="7"/>
+        android:numColumns="7" />
 </LinearLayout>

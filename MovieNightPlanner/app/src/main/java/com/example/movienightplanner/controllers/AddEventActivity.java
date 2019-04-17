@@ -1,15 +1,14 @@
-package com.example.movienightplanner;
+package com.example.movienightplanner.controllers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.movienightplanner.models.AppEngine;
+import com.example.movienightplanner.R;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
 
