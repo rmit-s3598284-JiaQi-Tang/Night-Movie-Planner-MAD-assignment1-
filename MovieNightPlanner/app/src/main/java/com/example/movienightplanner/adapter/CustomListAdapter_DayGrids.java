@@ -27,7 +27,7 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
 
     List<DayBean> beans;
 
-    public CustomListAdapter_DayGrids(CalendarViewActivity context, List<DayBean> beans){
+    public CustomListAdapter_DayGrids(CalendarViewActivity context, List<DayBean> beans) {
 
         super(context, R.layout.event_listview_row, beans);
 
@@ -40,7 +40,7 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        LayoutInflater inflater=context.getLayoutInflater();
+        LayoutInflater inflater = context.getLayoutInflater();
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_layout, null);
             holder = new ViewHolder();

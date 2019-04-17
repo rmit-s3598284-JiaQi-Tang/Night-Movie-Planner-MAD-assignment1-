@@ -3,6 +3,7 @@ package com.example.movienightplanner.controllers;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -41,13 +42,34 @@ public class CalendarViewActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
         currentDate.setText(dateFormat.format(date));
 
+        //display dates of this month
         beans = new ArrayList<DayBean>();
         CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getCurrentTime(), beans, calendarGrids, this);
-        adapter = new CustomListAdapter_DayGrids(this,beans);
+        adapter = new CustomListAdapter_DayGrids(this, beans);
         calendarGrids.setAdapter(adapter);
+
+        //show last month
+        preMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getLastMonth(CustomCalendarHelper.getCurrentTime()), beans,calendarGrids,CalendarViewActivity.this);
+                currentDate.setText(CustomCalendarHelper.long2str(CustomCalendarHelper.getCurrentTime()));
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        //show next month
+        nextMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomCalendarHelper.setCalendarList(CustomCalendarHelper.getNextMonth(CustomCalendarHelper.getCurrentTime()), beans,calendarGrids,CalendarViewActivity.this);
+                currentDate.setText(CustomCalendarHelper.long2str(CustomCalendarHelper.getCurrentTime()));
+                adapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
