@@ -100,7 +100,6 @@ public class CustomCalendarHelper {
 
         //calculate which days are from last month
         int fir_day_of_week = beans.get(0).getCalendar().get(Calendar.DAY_OF_WEEK);
-        Log.e("AAA", "week_last:" + fir_day_of_week);
         if (fir_day_of_week != 2) {
             if (fir_day_of_week == 1) {
                 for (int i = 0; i < 6; i++) {
@@ -109,7 +108,6 @@ public class CustomCalendarHelper {
                     cc.setTimeInMillis(millSecs);
                     cc.add(Calendar.DAY_OF_MONTH, -i - 1);
                     setBean(bean, cc);
-                    Log.e("AAA", "last:" + bean.getDay());
                     bean.setIsCurrentMonth(false);
                     beans.add(0, bean);
                 }
@@ -120,7 +118,6 @@ public class CustomCalendarHelper {
                     cc.setTimeInMillis(millSecs);
                     cc.add(Calendar.DAY_OF_MONTH, -i - 1);
                     setBean(bean, cc);
-                    Log.e("AAA", "last:" + bean.getDay());
                     bean.setIsCurrentMonth(false);
                     beans.add(0, bean);
                 }
@@ -129,7 +126,6 @@ public class CustomCalendarHelper {
         }
         //calculate which days are from next month
         int last_day_of_week = beans.get(beans.size() - 1).getCalendar().get(Calendar.DAY_OF_WEEK);
-        Log.e("AAA", "week_next:" + last_day_of_week);
         if (last_day_of_week != 1) {
             for (int i = last_day_of_week; i < 8; i++) {
                 DayBean bean = new DayBean();
@@ -137,7 +133,6 @@ public class CustomCalendarHelper {
                 cc.setTimeInMillis(millSecs);
                 cc.add(Calendar.DAY_OF_MONTH, i - last_day_of_week);
                 setBean(bean, cc);
-                Log.e("AAA", "next:" + bean.getDay());
                 bean.setIsCurrentMonth(false);
                 beans.add(bean);
             }
