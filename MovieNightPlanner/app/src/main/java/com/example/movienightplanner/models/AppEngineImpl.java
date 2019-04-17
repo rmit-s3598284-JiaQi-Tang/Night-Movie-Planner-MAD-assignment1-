@@ -43,7 +43,7 @@ public class AppEngineImpl implements AppEngine {
     public void startUp(Context context) {
         this.moviesList = initMovieList(context);
         this.eventLists = initEventsList(context);
-
+        ascendEvents();
         //we only read the txt files once
         dataRead = true;
     }
