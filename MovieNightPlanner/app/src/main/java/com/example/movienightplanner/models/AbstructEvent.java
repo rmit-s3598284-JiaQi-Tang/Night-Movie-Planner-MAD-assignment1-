@@ -1,15 +1,14 @@
 package com.example.movienightplanner.models;
 
-import java.util.Date;
 import java.util.List;
 
 public abstract class AbstructEvent implements Event {
 
 
-	@Override
-	public String getId() {
-		return null;
-	}
+    @Override
+    public String getId() {
+        return null;
+    }
 
     @Override
     public void setId(String id) {
@@ -26,10 +25,10 @@ public abstract class AbstructEvent implements Event {
 
     }
 
-	@Override
-	public String getStartDate() {
-		return null;
-	}
+    @Override
+    public String getStartDate() {
+        return null;
+    }
 
     @Override
     public void setStartDate(String startDate) {
@@ -37,9 +36,9 @@ public abstract class AbstructEvent implements Event {
     }
 
     @Override
-	public String getEndDate() {
-		return null;
-	}
+    public String getEndDate() {
+        return null;
+    }
 
     @Override
     public void setEndDate(String endDate) {
@@ -47,9 +46,9 @@ public abstract class AbstructEvent implements Event {
     }
 
     @Override
-	public String getVenue() {
-		return null;
-	}
+    public String getVenue() {
+        return null;
+    }
 
     @Override
     public void setVenue(String venue) {
@@ -57,9 +56,9 @@ public abstract class AbstructEvent implements Event {
     }
 
     @Override
-	public String getLocation() {
-		return null;
-	}
+    public String getLocation() {
+        return null;
+    }
 
     @Override
     public void setLocation(String location) {
@@ -67,7 +66,9 @@ public abstract class AbstructEvent implements Event {
     }
 
     @Override
-    public MovieImpl getMovie() { return null; }
+    public MovieImpl getMovie() {
+        return null;
+    }
 
     @Override
     public void setMovie(MovieImpl movie) {
@@ -75,9 +76,9 @@ public abstract class AbstructEvent implements Event {
     }
 
     @Override
-	public List<String> getAttendees() {
-		return null;
-	}
+    public List<String> getAttendees() {
+        return null;
+    }
 
     @Override
     public void setAttendees(List<String> attendees) {

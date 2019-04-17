@@ -54,17 +54,17 @@ public class EditEventActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //check if input was empty
-                if(tittleText.getText().toString().isEmpty()) {
+                if (tittleText.getText().toString().isEmpty()) {
                     appEngine.showAlert("Tittle can not be empty !", EditEventActivity.this);
-                } else if(startDateText.getText().toString().isEmpty()){
+                } else if (startDateText.getText().toString().isEmpty()) {
                     appEngine.showAlert("Start date can not be empty !", EditEventActivity.this);
-                } else if(endDateText.getText().toString().isEmpty()) {
+                } else if (endDateText.getText().toString().isEmpty()) {
                     appEngine.showAlert("End date can not be empty !", EditEventActivity.this);
-                } else if(venueText.getText().toString().isEmpty()) {
+                } else if (venueText.getText().toString().isEmpty()) {
                     appEngine.showAlert("Venue can not be empty !", EditEventActivity.this);
-                } else if(locationText.getText().toString().isEmpty()) {
+                } else if (locationText.getText().toString().isEmpty()) {
                     appEngine.showAlert("Location can not be empty !", EditEventActivity.this);
-                } else if(!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
+                } else if (!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
                     appEngine.showAlert("Please follow the date time format: 2/01/2019 3:00:00 AM ", EditEventActivity.this);
                 } else {
 

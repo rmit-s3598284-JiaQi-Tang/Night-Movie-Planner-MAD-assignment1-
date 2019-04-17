@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //initialise read txt files, but we only read once
-        if(!appEngine.getDataRead()) {
+        if (!appEngine.getDataRead()) {
             appEngine.startUp(this);
         }
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menuAddNew:
                 startActivity(new Intent(MainActivity.this, AddEventActivity.class));
                 Toast.makeText(this, "Please fill the details", Toast.LENGTH_SHORT).show();
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     //to update the listview
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         listAdapter.notifyDataSetChanged();
     }

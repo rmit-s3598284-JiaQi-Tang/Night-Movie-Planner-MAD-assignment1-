@@ -1,20 +1,17 @@
 package com.example.movienightplanner.helper;
 
-        import android.content.Context;
-        import android.text.format.DateUtils;
-        import android.util.Log;
-        import android.widget.GridView;
+import android.widget.GridView;
 
-        import com.example.movienightplanner.adapter.CustomListAdapter_DayGrids;
-        import com.example.movienightplanner.controllers.CalendarViewActivity;
-        import com.example.movienightplanner.models.AppEngineImpl;
-        import com.example.movienightplanner.models.DayBean;
-        import com.example.movienightplanner.models.EventImpl;
+import com.example.movienightplanner.adapter.CustomListAdapter_DayGrids;
+import com.example.movienightplanner.controllers.CalendarViewActivity;
+import com.example.movienightplanner.models.AppEngineImpl;
+import com.example.movienightplanner.models.DayBean;
+import com.example.movienightplanner.models.EventImpl;
 
-        import java.text.SimpleDateFormat;
-        import java.util.Calendar;
-        import java.util.Date;
-        import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class CustomCalendarHelper {
 
@@ -29,10 +26,7 @@ public class CustomCalendarHelper {
         return dateCount;
     }
 
-    /**
-     *   * 获取当月第一天
-     *   
-     */
+    //get the first day
     public static long getFirOfMonth(long millSec) {
 
         calendar.setTimeInMillis(millSec);
@@ -61,16 +55,13 @@ public class CustomCalendarHelper {
         return calendar.getTimeInMillis();
     }
 
-    /**
-     *   * 格式化到月份
-     *   
-     */
+    //format to month
     public static String long2str(long millSec) {
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy");
         return sdf.format(new Date(millSec));
     }
 
-    public static void setCalendarList(long millSecs, List<DayBean> beans, GridView calendarGrids, CustomListAdapter_DayGrids adapter , CalendarViewActivity context) {
+    public static void setCalendarList(long millSecs, List<DayBean> beans, GridView calendarGrids, CustomListAdapter_DayGrids adapter, CalendarViewActivity context) {
         beans.clear();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millSecs);
@@ -88,9 +79,9 @@ public class CustomCalendarHelper {
             //check if there is a event on that day
             AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
-            for(EventImpl event : appEngine.eventLists) {
+            for (EventImpl event : appEngine.eventLists) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                if(sdf.format(event.getDateTime()).equals(sdf.format(cc.getTime()))) {
+                if (sdf.format(event.getDateTime()).equals(sdf.format(cc.getTime()))) {
                     bean.setHasEvent(true);
                 }
             }

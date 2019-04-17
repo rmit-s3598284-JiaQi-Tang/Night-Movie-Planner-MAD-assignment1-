@@ -2,8 +2,11 @@ package com.example.movienightplanner.models;
 
 import android.util.Log;
 import android.app.AlertDialog;
+
 import com.example.movienightplanner.controllers.MainActivity;
+
 import android.content.DialogInterface;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -53,26 +56,27 @@ public class AppEngineImpl implements AppEngine {
     @Override
     public List<MovieImpl> initMovieList(Context context) {
         List<MovieImpl> list = new ArrayList<MovieImpl>();
-        for (String line : readTextFile("movies.txt",context)) {
+        for (String line : readTextFile("movies.txt", context)) {
             String[] splitedLine = line.split("\",\"");
             //add lengeth check
-            if(splitedLine.length == 4) {
-                list.add(new MovieImpl(splitedLine[0].replace("\"", ""),splitedLine[1].replace("\"", ""),splitedLine[2].replace("\"", ""),splitedLine[3].replace("\"", "")));
+            if (splitedLine.length == 4) {
+                list.add(new MovieImpl(splitedLine[0].replace("\"", ""), splitedLine[1].replace("\"", ""), splitedLine[2].replace("\"", ""), splitedLine[3].replace("\"", "")));
             } else {
                 showAlert("read txt error occurred", context);
             }
         }
         return list;
     }
+
     @Override
     public List<EventImpl> initEventsList(Context context) {
         List<EventImpl> list = new ArrayList<EventImpl>();
-        for (String line : readTextFile("events.txt",context)) {
+        for (String line : readTextFile("events.txt", context)) {
             String[] splitedLine = line.split("\",\"");
             //add length check
-            if(splitedLine.length == 6) {
+            if (splitedLine.length == 6) {
                 //the latitude and longitude was split, so I add them up again
-                EventImpl newEvent = new EventImpl(splitedLine[0].replace("\"", ""),splitedLine[1].replace("\"", ""),splitedLine[2].replace("\"", ""),splitedLine[3].replace("\"", ""),splitedLine[4].replace("\"", ""),splitedLine[5].replace("\"", ""));
+                EventImpl newEvent = new EventImpl(splitedLine[0].replace("\"", ""), splitedLine[1].replace("\"", ""), splitedLine[2].replace("\"", ""), splitedLine[3].replace("\"", ""), splitedLine[4].replace("\"", ""), splitedLine[5].replace("\"", ""));
                 newEvent.setDateTime(convertToDate(newEvent.getStartDate()));
                 list.add(newEvent);
             } else {
@@ -94,18 +98,15 @@ public class AppEngineImpl implements AppEngine {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             StringBuilder stringBuilder = new StringBuilder();
 
-            while ( (line = bufferedReader.readLine()) != null )
-            {
+            while ((line = bufferedReader.readLine()) != null) {
                 lines.add(line + System.getProperty("line.separator"));
             }
             fileInputStream.close();
             bufferedReader.close();
-        }
-        catch(FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             String TAG = MainActivity.class.getName();
             Log.d(TAG, ex.getMessage());
-        }
-        catch(IOException ex) {
+        } catch (IOException ex) {
             String TAG = MainActivity.class.getName();
             Log.d(TAG, ex.getMessage());
         }
@@ -139,13 +140,13 @@ public class AppEngineImpl implements AppEngine {
         });
     }
 
-    public boolean isValidDate(String date){
+    public boolean isValidDate(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy h:mm:ss");
         boolean flag = true;
 
-        try{
+        try {
             dateFormat.parse(date);
-        }catch(ParseException e){
+        } catch (ParseException e) {
             flag = false;
         }
         return flag;

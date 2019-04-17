@@ -1,24 +1,24 @@
 package com.example.movienightplanner.controllers;
 
-        import android.app.AlertDialog;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.support.v7.widget.Toolbar;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.ImageView;
-        import android.widget.ListView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.example.movienightplanner.R;
-        import com.example.movienightplanner.models.AppEngineImpl;
+import com.example.movienightplanner.R;
+import com.example.movienightplanner.models.AppEngineImpl;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -58,7 +58,7 @@ public class EventDetailActivity extends AppCompatActivity {
         endDateText = (TextView) findViewById(R.id.endDateID);
         endDateText.setText("End Date: " + appEngine.eventLists.get(eventPosition).getEndDate());
 
-        if(appEngine.eventLists.get(eventPosition).getMovie() != null) {
+        if (appEngine.eventLists.get(eventPosition).getMovie() != null) {
 
             movieImage = (ImageView) findViewById(R.id.movieImageView1ID);
             String imageName = appEngine.eventLists.get(eventPosition).getMovie().getPosterImageName().replace(".jpg", "").toLowerCase().trim();
@@ -123,7 +123,7 @@ public class EventDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.addOrChangeMovie:
 
@@ -168,7 +168,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
     //to update the display
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
     }

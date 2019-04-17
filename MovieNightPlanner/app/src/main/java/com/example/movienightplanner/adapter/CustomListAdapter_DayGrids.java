@@ -1,7 +1,6 @@
 package com.example.movienightplanner.adapter;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,9 @@ import android.widget.TextView;
 
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.controllers.CalendarViewActivity;
-import com.example.movienightplanner.controllers.MainActivity;
-import com.example.movienightplanner.helper.CustomCalendarHelper;
 import com.example.movienightplanner.models.DayBean;
 import com.example.movienightplanner.models.EventImpl;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class CustomListAdapter_DayGrids extends ArrayAdapter {

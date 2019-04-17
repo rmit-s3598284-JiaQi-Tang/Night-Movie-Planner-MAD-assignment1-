@@ -49,7 +49,7 @@ public class ContactsActivity extends AppCompatActivity {
                 int eventPosition = getIntent().getIntExtra("position", 1);
 
                 //check if this person have already been invited
-                if(appEngine.eventLists.get(eventPosition).getAttendees().contains(contactsList.get(position))) {
+                if (appEngine.eventLists.get(eventPosition).getAttendees().contains(contactsList.get(position))) {
                     //show alert to tell the contact have been added
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(ContactsActivity.this);
                     builder1.setMessage("This person already exits !");

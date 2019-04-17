@@ -1,9 +1,6 @@
 package com.example.movienightplanner.models;
 
-import com.example.movienightplanner.helper.CustomCalendarHelper;
-
 import java.util.Calendar;
-import java.util.Date;
 
 public class DayBean {
 

@@ -19,7 +19,7 @@ public class CustomListAdapter_MainActivityList extends ArrayAdapter {
 
     private List<EventImpl> eventsList;
 
-    public CustomListAdapter_MainActivityList(MainActivity context, List<EventImpl> eventsList){
+    public CustomListAdapter_MainActivityList(MainActivity context, List<EventImpl> eventsList) {
 
         super(context, R.layout.event_listview_row, eventsList);
 
@@ -30,8 +30,8 @@ public class CustomListAdapter_MainActivityList extends ArrayAdapter {
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.event_listview_row, null,true);
+        LayoutInflater inflater = context.getLayoutInflater();
+        View rowView = inflater.inflate(R.layout.event_listview_row, null, true);
 
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = (TextView) rowView.findViewById(R.id.tittleTextViewID);
