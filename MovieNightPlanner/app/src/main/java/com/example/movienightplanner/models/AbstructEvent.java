@@ -1,5 +1,6 @@
 package com.example.movienightplanner.models;
 
+import java.util.Date;
 import java.util.List;
 
 public abstract class AbstructEvent implements Event {
@@ -82,6 +83,16 @@ public abstract class AbstructEvent implements Event {
 
     @Override
     public void setAttendees(List<String> attendees) {
+
+    }
+
+    @Override
+    public Date getDateTime() {
+        return null;
+    }
+
+    @Override
+    public void setDateTime(Date dateTime) {
 
     }
 

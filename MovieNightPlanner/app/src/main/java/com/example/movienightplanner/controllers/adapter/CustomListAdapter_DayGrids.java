@@ -47,12 +47,12 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
             holder = (GridColumnViewHolder) convertView.getTag();
         }
         holder.day_text.setText("" + beans.get(position).getDay());
-        if (beans.get(position).hasEvent()) {
+        if (beans.get(position).getHasEvent()) {
             holder.day_text.setBackgroundColor(Color.RED);
         } else {
             holder.day_text.setBackgroundColor(Color.DKGRAY);
         }
-        if (beans.get(position).isCurrentMonth()) {
+        if (beans.get(position).getIsCurrentMonth()) {
             holder.day_text.setTextColor(Color.WHITE);
         } else {
             holder.day_text.setTextColor(Color.DKGRAY);

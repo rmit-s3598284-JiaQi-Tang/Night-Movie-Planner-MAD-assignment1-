@@ -70,7 +70,7 @@ public class CalendarViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (beans.get(position).hasEvent()) {
+                if (beans.get(position).getHasEvent()) {
                     int index = -1;
                     for (EventImpl event : appEngine.eventLists) {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");

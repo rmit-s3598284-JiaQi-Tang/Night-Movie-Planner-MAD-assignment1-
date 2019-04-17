@@ -33,14 +33,17 @@ public class EventImpl extends AbstructEvent {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
 
+    @Override
     public String getTittle() {
         return tittle;
     }
 
+    @Override
     public void setTittle(String tittle) {
         this.tittle = tittle;
     }
@@ -96,14 +99,17 @@ public class EventImpl extends AbstructEvent {
         return attendees;
     }
 
+    @Override
     public void setAttendees(List<String> attendees) {
         this.attendees = attendees;
     }
 
+    @Override
     public Date getDateTime() {
         return dateTime;
     }
 
+    @Override
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }

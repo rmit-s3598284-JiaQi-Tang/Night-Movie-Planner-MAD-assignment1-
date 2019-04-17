@@ -19,14 +19,17 @@ public class MovieImpl extends AbstructMovie {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
 
+    @Override
     public String getTittle() {
         return tittle;
     }
 
+    @Override
     public void setTittle(String tittle) {
         this.tittle = tittle;
     }
@@ -36,6 +39,7 @@ public class MovieImpl extends AbstructMovie {
         return year;
     }
 
+    @Override
     public void setYear(String year) {
         this.year = year;
     }
@@ -45,6 +49,7 @@ public class MovieImpl extends AbstructMovie {
         return posterImageName;
     }
 
+    @Override
     public void setPosterImageName(String posterImageName) {
         this.posterImageName = posterImageName;
     }

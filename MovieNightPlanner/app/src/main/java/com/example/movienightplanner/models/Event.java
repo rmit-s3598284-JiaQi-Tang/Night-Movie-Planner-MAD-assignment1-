@@ -1,5 +1,6 @@
 package com.example.movienightplanner.models;
 
+import java.util.Date;
 import java.util.List;
 
 public interface Event {
@@ -35,5 +36,9 @@ public interface Event {
     List<String> getAttendees();
 
     void setAttendees(List<String> attendees);
+
+    Date getDateTime();
+
+    void setDateTime(Date dateTime);
 
 }
