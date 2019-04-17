@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.movienightplanner.R;
-import com.example.movienightplanner.adapter.CustomListAdapter_DayGrids;
-import com.example.movienightplanner.helper.CustomCalendarHelper;
+import com.example.movienightplanner.controllers.adapter.CustomListAdapter_DayGrids;
+import com.example.movienightplanner.models.helper.CustomCalendarHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.DayBean;
 import com.example.movienightplanner.models.EventImpl;

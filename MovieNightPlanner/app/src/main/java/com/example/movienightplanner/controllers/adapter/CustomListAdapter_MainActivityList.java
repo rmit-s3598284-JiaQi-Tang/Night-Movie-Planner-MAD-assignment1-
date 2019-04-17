@@ -1,4 +1,4 @@
-package com.example.movienightplanner.adapter;
+package com.example.movienightplanner.controllers.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

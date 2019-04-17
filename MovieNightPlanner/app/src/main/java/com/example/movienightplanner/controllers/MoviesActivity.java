@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.movienightplanner.R;
-import com.example.movienightplanner.adapter.CustomListAdapter_MoviesActivityList;
+import com.example.movienightplanner.controllers.adapter.CustomListAdapter_MoviesActivityList;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 public class MoviesActivity extends AppCompatActivity {

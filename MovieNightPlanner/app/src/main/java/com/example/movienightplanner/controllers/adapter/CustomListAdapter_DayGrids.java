@@ -1,4 +1,4 @@
-package com.example.movienightplanner.adapter;
+package com.example.movienightplanner.controllers.adapter;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import com.example.movienightplanner.R;
 import com.example.movienightplanner.controllers.CalendarViewActivity;
 import com.example.movienightplanner.models.DayBean;
 import com.example.movienightplanner.models.EventImpl;
+import com.example.movienightplanner.views.GridColumnViewHolder;
 
 import java.util.List;
 
@@ -35,15 +36,15 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        GridColumnViewHolder holder;
         LayoutInflater inflater = context.getLayoutInflater();
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_layout, null);
-            holder = new ViewHolder();
+            holder = new GridColumnViewHolder();
             holder.day_text = (TextView) convertView.findViewById(R.id.day_text);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (GridColumnViewHolder) convertView.getTag();
         }
         holder.day_text.setText("" + beans.get(position).getDay());
         if (beans.get(position).hasEvent()) {
@@ -58,10 +59,6 @@ public class CustomListAdapter_DayGrids extends ArrayAdapter {
         }
 
         return convertView;
-    }
-
-    class ViewHolder {
-        TextView day_text;
     }
 
 }

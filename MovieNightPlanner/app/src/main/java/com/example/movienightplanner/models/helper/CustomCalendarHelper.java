@@ -1,8 +1,8 @@
-package com.example.movienightplanner.helper;
+package com.example.movienightplanner.models.helper;
 
 import android.widget.GridView;
 
-import com.example.movienightplanner.adapter.CustomListAdapter_DayGrids;
+import com.example.movienightplanner.controllers.adapter.CustomListAdapter_DayGrids;
 import com.example.movienightplanner.controllers.CalendarViewActivity;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.DayBean;
