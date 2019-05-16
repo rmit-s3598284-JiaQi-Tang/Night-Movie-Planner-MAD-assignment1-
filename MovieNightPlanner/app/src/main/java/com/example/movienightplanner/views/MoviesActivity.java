@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.controllers.adapter.CustomListAdapter_MoviesActivityList;
+import com.example.movienightplanner.controllers.adapter.MovieListViewOnItemClickListener;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 public class MoviesActivity extends AppCompatActivity {
@@ -29,34 +30,8 @@ public class MoviesActivity extends AppCompatActivity {
         listAdapter.notifyDataSetChanged();
         listView.setAdapter(listAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //event handling code is in a separate class called MovieListViewOnItemClickListener
+        listView.setOnItemClickListener(new MovieListViewOnItemClickListener(getIntent()));
 
-                //get the right event by event position parameter passed from last page
-                int eventPosition = getIntent().getIntExtra("position", 1);
-                appEngine.eventLists.get(eventPosition).setMovie(appEngine.moviesList.get(position));
-
-                //show alert to tell the movie of the event has been changed
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(MoviesActivity.this);
-                builder1.setMessage("Movie Changed to: " + "\"" + appEngine.moviesList.get(position).getTittle() + "\"");
-                builder1.setCancelable(true);
-
-                builder1.setPositiveButton(
-                        "ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                                Intent intent = new Intent(MoviesActivity.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-
-            }
-        });
     }
 }

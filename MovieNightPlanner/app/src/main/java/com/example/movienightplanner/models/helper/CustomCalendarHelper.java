@@ -57,7 +57,7 @@ public class CustomCalendarHelper {
 
     //format to month
     public static String long2str(long millSec) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat(DateFormats.MONTH_FORMAT );
         return sdf.format(new Date(millSec));
     }
 
@@ -80,7 +80,7 @@ public class CustomCalendarHelper {
             AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
             for (EventImpl event : appEngine.eventLists) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                SimpleDateFormat sdf = new SimpleDateFormat(DateFormats.CALENDARDATE_FORMAT);
                 if (sdf.format(event.getDateTime()).equals(sdf.format(cc.getTime()))) {
                     bean.setHasEvent(true);
                 }

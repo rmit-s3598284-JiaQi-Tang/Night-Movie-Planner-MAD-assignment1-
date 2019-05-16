@@ -25,6 +25,6 @@
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
-        android:padding="5dp" />
+        android:padding="@dimen/text_padding" />
 
 </RelativeLayout>

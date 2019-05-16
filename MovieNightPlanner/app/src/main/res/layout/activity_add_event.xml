@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        android:padding="@dimen/text_padding"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Title"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <EditText
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Start Date"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <EditText
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="End Date"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <EditText
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:text="Venue"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <EditText
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:text="Location"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <EditText
@@ -95,17 +95,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/addButton"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/text_padding"
             android:background="@color/colorAccent"
             android:text="Add"
-            android:textSize="18sp"
+            android:textSize="@dimen/button_text_size"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 

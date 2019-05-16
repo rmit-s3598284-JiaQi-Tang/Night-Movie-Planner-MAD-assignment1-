@@ -3,6 +3,7 @@ package com.example.movienightplanner.models;
 import android.util.Log;
 import android.app.AlertDialog;
 
+import com.example.movienightplanner.models.helper.DateFormats;
 import com.example.movienightplanner.views.MainActivity;
 
 import android.content.DialogInterface;
@@ -116,7 +117,7 @@ public class AppEngineImpl implements AppEngine {
     @Override
     public Date convertToDate(String inputDate) {
         Date date = new Date();
-        SimpleDateFormat formater = new SimpleDateFormat("d/MM/yyyy h:mm:ss");
+        SimpleDateFormat formater = new SimpleDateFormat(DateFormats.DATETIME_FORMAT);
         try {
             date = formater.parse(inputDate);
         } catch (ParseException ex) {
@@ -145,7 +146,7 @@ public class AppEngineImpl implements AppEngine {
 
     @Override
     public boolean isValidDate(String date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy h:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DateFormats.DATETIME_FORMAT);
         boolean flag = true;
 
         try {

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.controllers.adapter.CustomListAdapter_MainActivityList;
+import com.example.movienightplanner.controllers.adapter.EventListViewOnItemClickListener;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,16 +43,8 @@ public class MainActivity extends AppCompatActivity {
         listAdapter.notifyDataSetChanged();
         listView.setAdapter(listAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, EventDetailActivity.class);
-
-                //pass the position integer as parameter
-                intent.putExtra("position", position);
-                startActivity(intent);
-            }
-        });
+        //event handling code is in a separate class called EventListViewOnItemClickListener
+        listView.setOnItemClickListener(new EventListViewOnItemClickListener());
 
     }
 

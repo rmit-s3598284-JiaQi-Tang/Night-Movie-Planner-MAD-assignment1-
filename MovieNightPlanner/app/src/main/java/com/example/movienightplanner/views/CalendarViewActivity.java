@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movienightplanner.R;
+import com.example.movienightplanner.controllers.adapter.CalendarOnItemClickListener;
 import com.example.movienightplanner.controllers.adapter.CustomListAdapter_DayGrids;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.DayBean;
@@ -71,31 +72,8 @@ public class CalendarViewActivity extends AppCompatActivity {
             }
         });
 
-        //entry to the event
-        calendarGrids.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                if (beans.get(position).getHasEvent()) {
-                    int index = -1;
-                    for (EventImpl event : appEngine.eventLists) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                        if (sdf.format(event.getDateTime()).equals(sdf.format(beans.get(position).getCalendar().getTime()))) {
-                            index = appEngine.eventLists.indexOf(event);
-                        }
-                    }
-
-                    if (index >= 0) {
-                        Intent intent = new Intent(CalendarViewActivity.this, EventDetailActivity.class);
-
-                        //pass the position integer as parameter
-                        intent.putExtra("position", index);
-                        startActivity(intent);
-                    }
-                }
-
-            }
-        });
+        //entry to the event, event handling code is in a separate class called CalendarOnItemClickListener
+        calendarGrids.setOnItemClickListener(new CalendarOnItemClickListener(beans));
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.calendarViewToolbar);

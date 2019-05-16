@@ -16,6 +16,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:background="@color/colorPrimaryDark"
+        app:title="Event"
         app:titleTextColor="@android:color/background_dark" />
 
     <TextView
@@ -24,19 +25,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:textColor="@color/colorPrimary"
-        android:padding="10dp"
+        android:padding="@dimen/text_padding"
         android:text="Details: "
-        android:textSize="30sp"/>
+        android:textSize="@dimen/titletext_size"/>
+
+    <TextView
+        android:id="@+id/eventTittleID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/hardEventDetailID"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:padding="@dimen/text_padding"
+        android:textSize="@dimen/titletext_size"/>
 
     <TextView
         android:id="@+id/venueID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_below="@id/hardEventDetailID"
+        android:layout_below="@id/eventTittleID"
         android:textColor="@color/colorPrimaryDark"
-        android:padding="5dp"
-        android:textSize="20sp"/>
+        android:padding="@dimen/text_padding"
+        android:textSize="@dimen/titletext_size"/>
 
     <TextView
         android:id="@+id/startDateID"
@@ -45,7 +57,7 @@
         android:gravity="center_horizontal"
         android:layout_below="@id/venueID"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="15sp"/>
+        android:textSize="@dimen/text_size"/>
 
     <TextView
         android:id="@+id/endDateID"
@@ -54,7 +66,7 @@
         android:gravity="center_horizontal"
         android:layout_below="@id/startDateID"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="15sp"/>
+        android:textSize="@dimen/text_size"/>
 
     <TextView
         android:id="@+id/hardCodeMovieID"
@@ -62,9 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/endDateID"
         android:textColor="@color/colorPrimary"
-        android:padding="10dp"
+        android:padding="@dimen/text_padding"
         android:text="Moive: "
-        android:textSize="30sp"/>
+        android:textSize="@dimen/titletext_size"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -79,7 +91,7 @@
             android:layout_width="225dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:padding="10dp"
+            android:padding="@dimen/text_padding"
             app:srcCompat="@drawable/noimage" />
 
         <LinearLayout
@@ -96,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="No Moive"
-                android:textSize="24sp"
+                android:textSize="@dimen/titletext_size"
                 android:textStyle="bold" />
 
             <TextView
@@ -105,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="Please add a movie for this event"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_size" />
         </LinearLayout>
     </LinearLayout>
 
@@ -115,9 +127,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/linearLayoutMovieDetailID"
         android:textColor="@color/colorPrimary"
-        android:padding="10dp"
+        android:padding="@dimen/text_padding"
         android:text="Attendees: "
-        android:textSize="30sp"/>
+        android:textSize="@dimen/titletext_size"/>
 
     <ListView
         android:id="@+id/attentessListID"

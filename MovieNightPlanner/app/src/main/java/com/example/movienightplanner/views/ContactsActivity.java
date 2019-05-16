@@ -1,22 +1,19 @@
 package com.example.movienightplanner.views;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.ContentResolver;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.movienightplanner.R;
+import com.example.movienightplanner.controllers.adapter.ContactsListViewOnItemClickListener;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 import java.util.ArrayList;
@@ -41,56 +38,8 @@ public class ContactsActivity extends AppCompatActivity {
         // Read and show the contacts
         showContacts();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //get the right event by event position parameter passed from last page
-                int eventPosition = getIntent().getIntExtra("position", 1);
-
-                //check if this person have already been invited
-                if (appEngine.eventLists.get(eventPosition).getAttendees().contains(contactsList.get(position))) {
-                    //show alert to tell the contact have been added
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(ContactsActivity.this);
-                    builder1.setMessage("This person already exits !");
-                    builder1.setCancelable(true);
-
-                    builder1.setPositiveButton(
-                            "ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                    AlertDialog alert11 = builder1.create();
-                    alert11.show();
-                } else {
-                    List<String> newContacts = appEngine.eventLists.get(eventPosition).getAttendees();
-                    newContacts.add(contactsList.get(position));
-
-                    appEngine.eventLists.get(eventPosition).setAttendees(newContacts);
-
-                    //show alert to tell the contact have been added
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(ContactsActivity.this);
-                    builder1.setMessage(contactsList.get(position) + " has been added to " + appEngine.eventLists.get(eventPosition).getTittle());
-                    builder1.setCancelable(true);
-
-                    builder1.setPositiveButton(
-                            "ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                    onBackPressed();
-                                }
-                            });
-
-                    AlertDialog alert11 = builder1.create();
-                    alert11.show();
-                }
-
-            }
-        });
+        //event handling code is in a separate class called ContactsListViewOnItemClickListener
+        listView.setOnItemClickListener(new ContactsListViewOnItemClickListener(getIntent(), contactsList));
     }
 
 
@@ -109,12 +58,13 @@ public class ContactsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission is granted
-                showContacts();
-            } else {
-                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
-            }
+            return;
+        }
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permission is granted
+            showContacts();
+        } else {
+            Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
         }
     }
 

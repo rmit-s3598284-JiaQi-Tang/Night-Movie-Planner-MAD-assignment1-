@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="TextView"
-            android:textSize="24sp"
+            android:textSize="@dimen/titletext_size"
             android:textStyle="bold" />
 
         <TextView
@@ -35,6 +35,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="@dimen/text_size" />
     </LinearLayout>
 </LinearLayout>

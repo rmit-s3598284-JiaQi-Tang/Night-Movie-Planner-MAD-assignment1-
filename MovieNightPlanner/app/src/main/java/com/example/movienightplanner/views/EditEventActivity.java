@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.movienightplanner.R;
+import com.example.movienightplanner.controllers.adapter.EditEventOnclickListener;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 public class EditEventActivity extends AppCompatActivity {
@@ -49,53 +50,8 @@ public class EditEventActivity extends AppCompatActivity {
         locationText = (EditText) findViewById(R.id.locationEditTextID);
         locationText.setText(appEngine.eventLists.get(eventPosition).getLocation());
 
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //handled logic in EditEventOnclickListener class
+        editButton.setOnClickListener(new EditEventOnclickListener(this, tittleText, startDateText, endDateText, venueText,locationText, eventPosition));
 
-                //check if input was empty
-                if (tittleText.getText().toString().isEmpty()) {
-                    appEngine.showAlert("Tittle can not be empty !", EditEventActivity.this);
-                } else if (startDateText.getText().toString().isEmpty()) {
-                    appEngine.showAlert("Start date can not be empty !", EditEventActivity.this);
-                } else if (endDateText.getText().toString().isEmpty()) {
-                    appEngine.showAlert("End date can not be empty !", EditEventActivity.this);
-                } else if (venueText.getText().toString().isEmpty()) {
-                    appEngine.showAlert("Venue can not be empty !", EditEventActivity.this);
-                } else if (locationText.getText().toString().isEmpty()) {
-                    appEngine.showAlert("Location can not be empty !", EditEventActivity.this);
-                } else if (!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
-                    appEngine.showAlert("Please follow the date time format: 2/01/2019 3:00:00 AM ", EditEventActivity.this);
-                } else {
-
-                    appEngine.eventLists.get(eventPosition).setTittle(tittleText.getText().toString());
-                    appEngine.eventLists.get(eventPosition).setStartDate(startDateText.getText().toString());
-                    appEngine.eventLists.get(eventPosition).setEndDate(endDateText.getText().toString());
-                    appEngine.eventLists.get(eventPosition).setVenue(venueText.getText().toString());
-                    appEngine.eventLists.get(eventPosition).setLocation(locationText.getText().toString());
-                    appEngine.eventLists.get(eventPosition).setDateTime(appEngine.convertToDate(appEngine.eventLists.get(eventPosition).getStartDate()));
-
-                    //show alert to tell the new event created
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(EditEventActivity.this);
-                    builder1.setMessage("Event has been Edited !");
-                    builder1.setCancelable(true);
-
-                    builder1.setPositiveButton(
-                            "ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                    Intent intent = new Intent(EditEventActivity.this, MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-
-                    AlertDialog alert11 = builder1.create();
-                    alert11.show();
-                }
-
-            }
-        });
     }
 }
