@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/text_padding"
             android:background="@color/colorAccent"
-            android:text="Add"
+            android:text="@string/add"
             android:textSize="@dimen/button_text_size"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
