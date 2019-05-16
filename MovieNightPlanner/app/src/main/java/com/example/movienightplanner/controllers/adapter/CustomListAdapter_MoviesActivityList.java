@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.movienightplanner.controllers.MoviesActivity;
+import com.example.movienightplanner.views.MoviesActivity;
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.models.MovieImpl;
 

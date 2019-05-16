@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.movienightplanner.R;
-import com.example.movienightplanner.controllers.CalendarViewActivity;
+import com.example.movienightplanner.views.CalendarViewActivity;
 import com.example.movienightplanner.models.DayBean;
 import com.example.movienightplanner.models.EventImpl;
 import com.example.movienightplanner.views.GridColumnViewHolder;

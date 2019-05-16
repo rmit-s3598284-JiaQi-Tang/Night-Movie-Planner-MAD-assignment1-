@@ -3,7 +3,7 @@ package com.example.movienightplanner.models;
 import android.util.Log;
 import android.app.AlertDialog;
 
-import com.example.movienightplanner.controllers.MainActivity;
+import com.example.movienightplanner.views.MainActivity;
 
 import android.content.DialogInterface;
 

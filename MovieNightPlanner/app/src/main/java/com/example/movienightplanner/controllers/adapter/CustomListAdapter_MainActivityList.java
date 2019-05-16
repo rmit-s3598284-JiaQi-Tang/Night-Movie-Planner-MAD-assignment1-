@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.movienightplanner.controllers.MainActivity;
+import com.example.movienightplanner.views.MainActivity;
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.models.EventImpl;
 

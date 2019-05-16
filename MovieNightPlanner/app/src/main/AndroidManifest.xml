@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controllers.CalendarViewActivity"></activity>
-        <activity android:name=".controllers.ContactsActivity" />
-        <activity android:name=".controllers.MoviesActivity" />
-        <activity android:name=".controllers.EditEventActivity" />
-        <activity android:name=".controllers.AddEventActivity" />
-        <activity android:name=".controllers.EventDetailActivity" />
-        <activity android:name=".controllers.MainActivity">
+        <activity android:name=".views.CalendarViewActivity"></activity>
+        <activity android:name=".views.ContactsActivity" />
+        <activity android:name=".views.MoviesActivity" />
+        <activity android:name=".views.EditEventActivity" />
+        <activity android:name=".views.AddEventActivity" />
+        <activity android:name=".views.EventDetailActivity" />
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

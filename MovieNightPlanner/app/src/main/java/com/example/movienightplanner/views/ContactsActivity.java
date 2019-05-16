@@ -1,4 +1,4 @@
-package com.example.movienightplanner.controllers;
+package com.example.movienightplanner.views;
 
 import android.Manifest;
 import android.app.AlertDialog;

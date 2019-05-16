@@ -1,4 +1,4 @@
-package com.example.movienightplanner.controllers;
+package com.example.movienightplanner.views;
 
 import android.content.Intent;
 import android.os.Bundle;
