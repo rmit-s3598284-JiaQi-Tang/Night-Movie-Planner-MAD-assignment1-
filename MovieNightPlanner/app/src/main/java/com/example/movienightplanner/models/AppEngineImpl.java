@@ -3,6 +3,7 @@ package com.example.movienightplanner.models;
 import android.util.Log;
 import android.app.AlertDialog;
 
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.helper.DateFormats;
 import com.example.movienightplanner.views.MainActivity;
 
@@ -42,8 +43,35 @@ public class AppEngineImpl implements AppEngine {
 
     @Override
     public void startUp(Context context) {
-        this.moviesList = initMovieList(context);
-        this.eventLists = initEventsList(context);
+        DBHelper dbHelper = new DBHelper(context);
+
+        this.moviesList = dbHelper.getAllMovies();
+        this.eventLists = dbHelper.getAllEvents();
+
+        if(moviesList.isEmpty() && eventLists.isEmpty()) {
+            initMovieList(context, dbHelper);
+            initEventsList(context, dbHelper);
+            this.moviesList = dbHelper.getAllMovies();
+            this.eventLists = dbHelper.getAllEvents();
+        }
+
+        for (EventImpl event : eventLists) {
+            //update movies
+            if(event.getMovieId() != null) {
+                for(MovieImpl movie : moviesList) {
+                    if(new Integer(movie.getId()).equals(event.getMovieId())) {
+                        event.setMovie(movie);
+                    }
+                }
+            }
+            //update attendees
+            List<String> attendeeList = new ArrayList<String>();
+            for (String attendee : dbHelper.getAllAttendeesOfAnEvent(new Integer(event.getId()))) {
+                attendeeList.add(attendee);
+            }
+            event.setAttendees(attendeeList);
+        }
+
         ascendEvents();
         //we only read the txt files once
         dataRead = true;
@@ -55,23 +83,24 @@ public class AppEngineImpl implements AppEngine {
     }
 
     @Override
-    public List<MovieImpl> initMovieList(Context context) {
-        List<MovieImpl> list = new ArrayList<MovieImpl>();
+    public void initMovieList(Context context, DBHelper dbHelper) {
         for (String line : readTextFile("movies.txt", context)) {
             String[] splitedLine = line.split("\",\"");
             //add lengeth check
             if (splitedLine.length == 4) {
-                list.add(new MovieImpl(splitedLine[0].replace("\"", ""), splitedLine[1].replace("\"", ""), splitedLine[2].replace("\"", ""), splitedLine[3].replace("\"", "")));
+                MovieImpl movie = new MovieImpl(splitedLine[0].replace("\"", ""), splitedLine[1].replace("\"", ""), splitedLine[2].replace("\"", ""), splitedLine[3].replace("\"", ""));
+
+                //add to database
+                dbHelper.insertMovie(movie.getTittle(), movie.getYear(), movie.getPosterImageName());
+
             } else {
                 showAlert("read txt error occurred", context);
             }
         }
-        return list;
     }
 
     @Override
-    public List<EventImpl> initEventsList(Context context) {
-        List<EventImpl> list = new ArrayList<EventImpl>();
+    public void initEventsList(Context context, DBHelper dbHelper) {
         for (String line : readTextFile("events.txt", context)) {
             String[] splitedLine = line.split("\",\"");
             //add length check
@@ -79,13 +108,13 @@ public class AppEngineImpl implements AppEngine {
                 //the latitude and longitude was split, so I add them up again
                 EventImpl newEvent = new EventImpl(splitedLine[0].replace("\"", ""), splitedLine[1].replace("\"", ""), splitedLine[2].replace("\"", ""), splitedLine[3].replace("\"", ""), splitedLine[4].replace("\"", ""), splitedLine[5].replace("\"", ""));
                 newEvent.setDateTime(convertToDate(newEvent.getStartDate()));
-                list.add(newEvent);
+
+                //add to database
+                dbHelper.insertEvent(newEvent.getTittle(),newEvent.getStartDate(),newEvent.getEndDate(),newEvent.getVenue(),newEvent.getLocation());
             } else {
                 showAlert("read txt error occurred", context);
             }
-
         }
-        return list;
     }
 
     @Override

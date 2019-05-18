@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.views.EventDetailActivity;
 
@@ -21,11 +22,12 @@ public class EventDetailListViewOnItemClickListener implements AdapterView.OnIte
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+    public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
 
         //show alert to tell the movie of the event has been changed
         AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
-        builder1.setMessage("Are you sure to delete the attendee called : " + appEngine.eventLists.get(eventPosition).getAttendees().get(position));
+        final String attendeeName = appEngine.eventLists.get(eventPosition).getAttendees().get(position);
+        builder1.setMessage("Are you sure to delete the attendee called : " + attendeeName);
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
@@ -34,6 +36,11 @@ public class EventDetailListViewOnItemClickListener implements AdapterView.OnIte
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         appEngine.eventLists.get(eventPosition).getAttendees().remove(position);
+
+                        //update dataBase
+                        DBHelper dbHelper = new DBHelper(view.getContext());
+                        dbHelper.deleteAttendeeFromEvent(new Integer(appEngine.eventLists.get(eventPosition).getId()), attendeeName);
+
                         adapter.notifyDataSetChanged();
                     }
                 });

@@ -2,6 +2,8 @@ package com.example.movienightplanner.models;
 
 import android.content.Context;
 
+import com.example.movienightplanner.database.DBHelper;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,9 +13,9 @@ public interface AppEngine {
 
     public void startUp(Context context);
 
-    public List<EventImpl> initEventsList(Context context);
+    public void initEventsList(Context context, DBHelper dbHelper);
 
-    public List<MovieImpl> initMovieList(Context context);
+    public void initMovieList(Context context, DBHelper dbHelper);
 
     public List<String> readTextFile(String fileName, Context context);
 

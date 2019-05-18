@@ -41,4 +41,8 @@ public interface Event {
 
     void setDateTime(Date dateTime);
 
+    Integer getMovieId();
+
+    void setMovieId(Integer movieId);
+
 }

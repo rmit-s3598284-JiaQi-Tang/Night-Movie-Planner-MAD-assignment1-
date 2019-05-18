@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.views.ContactsActivity;
 
@@ -47,8 +48,11 @@ public class ContactsListViewOnItemClickListener implements AdapterView.OnItemCl
         } else {
             List<String> newContacts = appEngine.eventLists.get(eventPosition).getAttendees();
             newContacts.add(contactsList.get(position));
-
             appEngine.eventLists.get(eventPosition).setAttendees(newContacts);
+
+            //update dataBase
+            DBHelper dbHelper = new DBHelper(view.getContext());
+            dbHelper.insertAttendance(new Integer(appEngine.eventLists.get(eventPosition).getId()), contactsList.get(position));
 
             //show alert to tell the contact have been added
             AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());

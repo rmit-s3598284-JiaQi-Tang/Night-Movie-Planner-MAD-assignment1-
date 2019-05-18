@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
 import com.example.movienightplanner.views.AddEventActivity;
@@ -49,6 +50,10 @@ public class AddNewEventOnClickListener implements View.OnClickListener {
             EventImpl newEvents = new EventImpl("" + appEngine.eventLists.size(), tittleText.getText().toString(), startDateText.getText().toString(), endDateText.getText().toString(), venueText.getText().toString(), locationText.getText().toString());
             newEvents.setDateTime(appEngine.convertToDate(newEvents.getStartDate()));
             appEngine.eventLists.add(newEvents);
+
+            //add to database
+            DBHelper dbHelper = new DBHelper(v.getContext());
+            dbHelper.insertEvent(newEvents.getTittle(),newEvents.getStartDate(),newEvents.getEndDate(),newEvents.getVenue(),newEvents.getLocation());
 
             //show alert to tell the new event created
             AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getContext());

@@ -12,6 +12,7 @@ public abstract class AbstractEvent implements Event {
     private String endDate;
     private String venue;
     private String location;
+    private Integer movieId;
     private MovieImpl movie;
     private List<String> attendees;
     private Date dateTime;
@@ -113,4 +114,13 @@ public abstract class AbstractEvent implements Event {
         this.dateTime = dateTime;
     }
 
+    @Override
+    public Integer getMovieId() {
+        return movieId;
+    }
+
+    @Override
+    public void setMovieId(Integer movieId) {
+        this.movieId = movieId;
+    }
 }

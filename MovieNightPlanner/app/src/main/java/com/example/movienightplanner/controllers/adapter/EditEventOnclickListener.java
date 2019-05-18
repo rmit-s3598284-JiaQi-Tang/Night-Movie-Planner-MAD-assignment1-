@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
+import com.example.movienightplanner.models.EventImpl;
 import com.example.movienightplanner.views.AddEventActivity;
 import com.example.movienightplanner.views.EditEventActivity;
 import com.example.movienightplanner.views.MainActivity;
@@ -56,6 +58,11 @@ public class EditEventOnclickListener implements View.OnClickListener {
             appEngine.eventLists.get(eventPosition).setVenue(venueText.getText().toString());
             appEngine.eventLists.get(eventPosition).setLocation(locationText.getText().toString());
             appEngine.eventLists.get(eventPosition).setDateTime(appEngine.convertToDate(appEngine.eventLists.get(eventPosition).getStartDate()));
+
+            //update database
+            DBHelper dbHelper = new DBHelper(v.getContext());
+            EventImpl event = appEngine.eventLists.get(eventPosition);
+            dbHelper.editEvent(new Integer(event.getId()),event.getTittle(),event.getStartDate(),event.getEndDate(),event.getVenue(),event.getLocation());
 
             //show alert to tell the new event created
             AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getContext());

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.views.MainActivity;
 import com.example.movienightplanner.views.MoviesActivity;
@@ -24,6 +25,10 @@ public class MovieListViewOnItemClickListener implements AdapterView.OnItemClick
         //get the right event by event position parameter passed from last page
         int eventPosition = intent.getIntExtra("position", 1);
         appEngine.eventLists.get(eventPosition).setMovie(appEngine.moviesList.get(position));
+
+        //update database
+        DBHelper dbHelper = new DBHelper(view.getContext());
+        dbHelper.addMovieToEvent(new Integer(appEngine.eventLists.get(eventPosition).getId()), new Integer(appEngine.moviesList.get(position).getId()));
 
         //show alert to tell the movie of the event has been changed
         AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
