@@ -12,4 +12,6 @@
     <string name="fri">FRI</string>
     <string name="sat">SAT</string>
     <string name="last_date">30</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

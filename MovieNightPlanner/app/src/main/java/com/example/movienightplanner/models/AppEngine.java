@@ -25,6 +25,8 @@ public interface AppEngine {
 
     public void descendEvents();
 
+    public List<EventImpl> get3SoonestEvents();
+
     public boolean isValidDate(String date);
 
     public void showAlert(String message, Context context);

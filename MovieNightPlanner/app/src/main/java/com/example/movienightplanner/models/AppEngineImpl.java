@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -171,6 +172,37 @@ public class AppEngineImpl implements AppEngine {
                 return o2.getDateTime().compareTo(o1.getDateTime());
             }
         });
+    }
+
+    @Override
+    public List<EventImpl> get3SoonestEvents() {
+        //pass values without pointers
+        List<EventImpl> soonestEvents = new ArrayList<EventImpl>(eventLists);
+
+        Collections.sort(soonestEvents, new Comparator<EventImpl>() {
+            public int compare(EventImpl o1, EventImpl o2) {
+                return o1.getDateTime().compareTo(o2.getDateTime());
+            }
+        });
+
+        //remove passed events
+        for(EventImpl event : eventLists) {
+            Date currentTime = Calendar.getInstance().getTime();
+            if(event.getDateTime().before(currentTime)) {
+                soonestEvents.remove(event);
+            }
+        }
+
+        //if already 3 or less left
+        if(soonestEvents.size() <= 3) {
+            return soonestEvents;
+        }
+
+        for (int i = 3; i < soonestEvents.size();i ++) {
+            soonestEvents.remove(i);
+        }
+
+        return soonestEvents;
     }
 
     @Override
