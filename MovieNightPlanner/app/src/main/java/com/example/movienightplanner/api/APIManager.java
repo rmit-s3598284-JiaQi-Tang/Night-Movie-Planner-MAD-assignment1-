@@ -25,8 +25,8 @@ import java.io.InputStream;
 import static android.support.v4.content.ContextCompat.getSystemService;
 
 public class APIManager extends AsyncTask<String, String, String> {
-    public static String getDuration(Context context, Location currentLocation, Double latidude, Double longitude) {
-        String duration = "";
+    public static long getDurationSeconds(Context context, Location currentLocation, Double latidude, Double longitude) {
+        long duration = 0;
         StringBuilder stringBuilder = new StringBuilder();
         String url = API.getURL(currentLocation, latidude, longitude);
         System.out.println(url);
@@ -56,26 +56,13 @@ public class APIManager extends AsyncTask<String, String, String> {
 
             Welcome data = Converter.fromJsonString(stringBuilder.toString());
 
-//            JSONArray array = jsonObject.getJSONArray("rows");
-//
-//            JSONObject row = array.getJSONObject(0);
-//
-//            JSONObject element = row.getJSONObject("elements");
-//
-//            JSONObject jsonDuration= element.getJSONObject("duration");
-//
-//            Log.i("Duration", jsonDuration.toString());
-//
-//            duration = jsonDuration.getString("text");
-            duration = data.getRows()[0].getElements()[0].getDuration().getText();
+            duration = data.getRows()[0].getElements()[0].getDuration().getValue();
 
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return duration;
     }
 

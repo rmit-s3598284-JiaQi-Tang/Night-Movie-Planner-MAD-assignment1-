@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 
@@ -108,7 +109,7 @@ public class AppEngineImpl implements AppEngine {
             if (splitedLine.length == 6) {
                 //the latitude and longitude was split, so I add them up again
                 EventImpl newEvent = new EventImpl(splitedLine[0].replace("\"", ""), splitedLine[1].replace("\"", ""), splitedLine[2].replace("\"", ""), splitedLine[3].replace("\"", ""), splitedLine[4].replace("\"", ""), splitedLine[5].replace("\"", ""));
-                newEvent.setDateTime(convertToDate(newEvent.getStartDate()));
+                newEvent.setDateTime(DateFormats.convertToDate(newEvent.getStartDate()));
 
                 //add to database
                 dbHelper.insertEvent(newEvent.getTittle(),newEvent.getStartDate(),newEvent.getEndDate(),newEvent.getVenue(),newEvent.getLocation());
@@ -144,17 +145,17 @@ public class AppEngineImpl implements AppEngine {
         return lines;
     }
 
-    @Override
-    public Date convertToDate(String inputDate) {
-        Date date = new Date();
-        SimpleDateFormat formater = new SimpleDateFormat(DateFormats.DATETIME_FORMAT);
-        try {
-            date = formater.parse(inputDate);
-        } catch (ParseException ex) {
-            Log.v("Exception", ex.getLocalizedMessage());
-        }
-        return date;
-    }
+//    @Override
+//    public Date convertToDate(String inputDate) {
+//        Date date = new Date();
+//        SimpleDateFormat date12Format = new SimpleDateFormat(DateFormats.DATETIME_FORMAT, Locale.ENGLISH);
+//        try {
+//            date = date12Format.parse(inputDate);
+//        } catch (ParseException ex) {
+//            Log.v("Exception", ex.getLocalizedMessage());
+//        }
+//        return date;
+//    }
 
     @Override
     public void ascendEvents() {
@@ -205,18 +206,39 @@ public class AppEngineImpl implements AppEngine {
         return soonestEvents;
     }
 
-    @Override
-    public boolean isValidDate(String date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DateFormats.DATETIME_FORMAT);
-        boolean flag = true;
+    public List<EventImpl> getFutureEvents() {
+        //pass values without pointers
+        List<EventImpl> soonestEvents = new ArrayList<EventImpl>(eventLists);
 
-        try {
-            dateFormat.parse(date);
-        } catch (ParseException e) {
-            flag = false;
+        Collections.sort(soonestEvents, new Comparator<EventImpl>() {
+            public int compare(EventImpl o1, EventImpl o2) {
+                return o1.getDateTime().compareTo(o2.getDateTime());
+            }
+        });
+
+        //remove passed events
+        for(EventImpl event : eventLists) {
+            Date currentTime = Calendar.getInstance().getTime();
+            if(event.getDateTime().before(currentTime)) {
+                soonestEvents.remove(event);
+            }
         }
-        return flag;
+
+        return soonestEvents;
     }
+
+//    @Override
+//    public boolean isValidDate(String date) {
+//        SimpleDateFormat date12Format = new SimpleDateFormat(DateFormats.DATETIME_FORMAT, Locale.ENGLISH);
+//        boolean flag = true;
+//
+//        try {
+//            date12Format.parse(date);
+//        } catch (ParseException e) {
+//            flag = false;
+//        }
+//        return flag;
+//    }
 
     @Override
     public void showAlert(String message, Context context) {

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
+import com.example.movienightplanner.models.helper.DateFormats;
 import com.example.movienightplanner.views.AddEventActivity;
 
 public class AddNewEventOnClickListener implements View.OnClickListener {
@@ -44,11 +45,11 @@ public class AddNewEventOnClickListener implements View.OnClickListener {
             appEngine.showAlert("Venue can not be empty !", v.getContext());
         } else if (locationText.getText().toString().isEmpty()) {
             appEngine.showAlert("Location can not be empty !", v.getContext());
-        } else if (!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
+        } else if (!DateFormats.isValidDate(startDateText.getText().toString()) || !DateFormats.isValidDate(endDateText.getText().toString())) {
             appEngine.showAlert("Please follow the date time format: 2/01/2019 3:00:00 AM ", v.getContext());
         } else {
             EventImpl newEvents = new EventImpl("" + appEngine.eventLists.size(), tittleText.getText().toString(), startDateText.getText().toString(), endDateText.getText().toString(), venueText.getText().toString(), locationText.getText().toString());
-            newEvents.setDateTime(appEngine.convertToDate(newEvents.getStartDate()));
+            newEvents.setDateTime(DateFormats.convertToDate(newEvents.getStartDate()));
             appEngine.eventLists.add(newEvents);
 
             //add to database

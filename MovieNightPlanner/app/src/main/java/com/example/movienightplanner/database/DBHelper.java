@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.movienightplanner.models.EventImpl;
 import com.example.movienightplanner.models.MovieImpl;
+import com.example.movienightplanner.models.helper.DateFormats;
 
 import static com.example.movienightplanner.models.helper.DateFormats.convertToDate;
 

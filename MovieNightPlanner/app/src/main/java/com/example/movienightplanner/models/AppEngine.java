@@ -19,7 +19,7 @@ public interface AppEngine {
 
     public List<String> readTextFile(String fileName, Context context);
 
-    public Date convertToDate(String inputDate);
+//    public Date convertToDate(String inputDate);
 
     public void ascendEvents();
 
@@ -27,7 +27,7 @@ public interface AppEngine {
 
     public List<EventImpl> get3SoonestEvents();
 
-    public boolean isValidDate(String date);
+//    public boolean isValidDate(String date);
 
     public void showAlert(String message, Context context);
 

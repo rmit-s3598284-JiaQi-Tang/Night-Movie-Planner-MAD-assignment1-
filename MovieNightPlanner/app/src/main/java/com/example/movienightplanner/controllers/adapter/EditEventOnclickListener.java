@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
+import com.example.movienightplanner.models.helper.DateFormats;
 import com.example.movienightplanner.views.AddEventActivity;
 import com.example.movienightplanner.views.EditEventActivity;
 import com.example.movienightplanner.views.MainActivity;
@@ -48,7 +49,7 @@ public class EditEventOnclickListener implements View.OnClickListener {
             appEngine.showAlert("Venue can not be empty !", v.getContext());
         } else if (locationText.getText().toString().isEmpty()) {
             appEngine.showAlert("Location can not be empty !", v.getContext());
-        } else if (!appEngine.isValidDate(startDateText.getText().toString()) || !appEngine.isValidDate(endDateText.getText().toString())) {
+        } else if (!DateFormats.isValidDate(startDateText.getText().toString()) || !DateFormats.isValidDate(endDateText.getText().toString())) {
             appEngine.showAlert("Please follow the date time format: 2/01/2019 3:00:00 AM ", v.getContext());
         } else {
 
@@ -57,7 +58,7 @@ public class EditEventOnclickListener implements View.OnClickListener {
             appEngine.eventLists.get(eventPosition).setEndDate(endDateText.getText().toString());
             appEngine.eventLists.get(eventPosition).setVenue(venueText.getText().toString());
             appEngine.eventLists.get(eventPosition).setLocation(locationText.getText().toString());
-            appEngine.eventLists.get(eventPosition).setDateTime(appEngine.convertToDate(appEngine.eventLists.get(eventPosition).getStartDate()));
+            appEngine.eventLists.get(eventPosition).setDateTime(DateFormats.convertToDate(appEngine.eventLists.get(eventPosition).getStartDate()));
 
             //update database
             DBHelper dbHelper = new DBHelper(v.getContext());
