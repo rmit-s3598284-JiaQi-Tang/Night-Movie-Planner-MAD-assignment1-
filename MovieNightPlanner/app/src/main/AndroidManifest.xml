@@ -26,6 +26,11 @@
         <receiver android:name=".receivers.DeleteNotificationReceiver"/>
         <receiver android:name=".receivers.DismissNotificationReceiver"/>
         <receiver android:name=".receivers.RemindLaterNotificationReceiver"/>
+        <receiver android:name=".receivers.NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -62,11 +67,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".api.LocationService"
-            android:enabled="true"
-            android:exported="true" />
     </application>
 
 </manifest>
