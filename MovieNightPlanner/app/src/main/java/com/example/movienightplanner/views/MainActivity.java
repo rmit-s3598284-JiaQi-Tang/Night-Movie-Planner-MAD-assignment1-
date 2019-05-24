@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             tv_check_connection.setText("We are back !!!");
             tv_check_connection.setBackgroundColor(Color.GREEN);
             tv_check_connection.setTextColor(Color.WHITE);
-            
+
             Handler handler = new Handler();
             Runnable delayrunnable = new Runnable() {
                 @Override

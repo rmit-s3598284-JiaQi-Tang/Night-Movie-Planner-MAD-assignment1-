@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.movienightplanner.R;
-import com.example.movienightplanner.controllers.adapter.EditEventOnclickListener;
 import com.example.movienightplanner.controllers.adapter.SetingsDoneOnclickListener;
 import com.example.movienightplanner.models.AppEngineImpl;
 
@@ -23,14 +22,18 @@ public class SettingsActivity extends AppCompatActivity {
         Button doneButton;
 
         final EditText remindingPeriodText;
+        final EditText thresholdPeriodText;
 
         doneButton = (Button) findViewById(R.id.doneButton);
 
         remindingPeriodText = (EditText) findViewById(R.id.remindingPeriodEditTextID);
         remindingPeriodText.setText(""+appEngine.getRemindingPeriod());
 
+        thresholdPeriodText = (EditText) findViewById(R.id.thresholdEditTextID);
+        thresholdPeriodText.setText(""+appEngine.getThreshold());
+
         //handled logic in SetingsDoneOnclickListener class
-        doneButton.setOnClickListener(new SetingsDoneOnclickListener(this, remindingPeriodText));
+        doneButton.setOnClickListener(new SetingsDoneOnclickListener(this, remindingPeriodText, thresholdPeriodText));
 
     }
 }

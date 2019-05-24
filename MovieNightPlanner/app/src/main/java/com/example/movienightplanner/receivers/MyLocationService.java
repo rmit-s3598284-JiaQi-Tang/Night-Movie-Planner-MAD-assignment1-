@@ -55,7 +55,7 @@ public class MyLocationService extends BroadcastReceiver {
                                     int leftMinutes = (int)(TimeUnit.MILLISECONDS.toMinutes(event.getDateTime().getTime()) - TimeUnit.MILLISECONDS.toMinutes(currentTime.getTime()));
 
                                     //send notifications at 15 minutes before the exact start time
-                                    if(duration + 15 == leftMinutes ) {
+                                    if(duration + appEngine.getThreshold() == leftMinutes ) {
                                         showNotification(context, appEngine.eventLists.indexOf(event),"is starting in " + leftMinutes + " minutes, you are now " + duration+" minutes driving away from the event location");
                                     }
                                     //send notifications for reachable events start in 1 hour

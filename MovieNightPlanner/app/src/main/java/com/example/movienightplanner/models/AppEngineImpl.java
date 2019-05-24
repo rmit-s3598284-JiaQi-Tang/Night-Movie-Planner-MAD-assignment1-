@@ -34,6 +34,7 @@ public class AppEngineImpl implements AppEngine {
     private boolean dataRead = false;
 
     public static int remindingPeriod = 1;
+    public static int threshold = 60;
 
     public static AppEngineImpl getSharedInstance() {
         if (sharedInstance == null) {
@@ -239,4 +240,13 @@ public class AppEngineImpl implements AppEngine {
     public static void setRemindingPeriod(int remindingPeriod) {
         AppEngineImpl.remindingPeriod = remindingPeriod;
     }
+
+    public static int getThreshold() {
+        return AppEngineImpl.threshold;
+    }
+
+    public static void setThreshold(int threshold) {
+        AppEngineImpl.threshold = threshold;
+    }
+
 }

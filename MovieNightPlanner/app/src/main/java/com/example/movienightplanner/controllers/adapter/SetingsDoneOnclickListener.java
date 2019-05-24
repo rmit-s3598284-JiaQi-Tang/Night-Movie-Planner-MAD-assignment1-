@@ -6,11 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
-import com.example.movienightplanner.models.EventImpl;
-import com.example.movienightplanner.models.helper.DateFormats;
-import com.example.movienightplanner.views.EditEventActivity;
 import com.example.movienightplanner.views.MainActivity;
 import com.example.movienightplanner.views.SettingsActivity;
 
@@ -19,10 +15,12 @@ public class SetingsDoneOnclickListener implements View.OnClickListener {
     public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
     private SettingsActivity superActivity;
     final EditText remindingPeriodText;
+    final EditText thresholdPeriodText;
 
-    public SetingsDoneOnclickListener(SettingsActivity superActivity, EditText remindingPeriodText) {
+    public SetingsDoneOnclickListener(SettingsActivity superActivity, EditText remindingPeriodText, EditText thresholdPeriodText) {
         this.superActivity = superActivity;
         this.remindingPeriodText = remindingPeriodText;
+        this.thresholdPeriodText = thresholdPeriodText;
     }
 
     @Override
@@ -32,13 +30,16 @@ public class SetingsDoneOnclickListener implements View.OnClickListener {
         if (remindingPeriodText.getText().toString().isEmpty()) {
             appEngine.showAlert("Reminding peoriod can not be empty !", v.getContext());
         }
+        else if (thresholdPeriodText.getText().toString().isEmpty()) {
+            appEngine.showAlert("Threshold can not be empty !", v.getContext());
+        }
         else {
             try{
                 appEngine.setRemindingPeriod(Integer.parseInt(remindingPeriodText.getText().toString()));
-
+                appEngine.setThreshold(Integer.parseInt(thresholdPeriodText.getText().toString()));
                 //show alert
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getContext());
-                builder1.setMessage("reminding period has been edited to " + appEngine.getRemindingPeriod() + " minutes");
+                builder1.setMessage("remind period has been edited to " + appEngine.getRemindingPeriod() + " minutes" + System.getProperty("line.separator") + "threshold has been edited to " + appEngine.getThreshold() + " minutes");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
@@ -56,7 +57,7 @@ public class SetingsDoneOnclickListener implements View.OnClickListener {
                 alert11.show();
 
             }catch (Exception e) {
-                e.printStackTrace();
+                appEngine.showAlert("Please input an Integer !", v.getContext());
             }
 
         }

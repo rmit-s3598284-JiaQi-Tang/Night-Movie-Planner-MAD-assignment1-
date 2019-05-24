@@ -30,6 +30,24 @@
             android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/thresholdViewID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/threshold"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/titletext_size"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/thresholdEditTextID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/editText_size"
+            android:textStyle="bold" />
+
+
         <Button
             android:id="@+id/doneButton"
             android:layout_width="@dimen/button_width"
