@@ -2,6 +2,7 @@ package com.example.movienightplanner.api;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,7 @@ public class MyLocationService extends BroadcastReceiver {
 
     public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
     public static final String ACTION_PROCESS_UPDATE = "com.example.movienightplanner.api.UPDATE_LOCATION";
+    public static final int NOTIFICATION_CHANNEL = 1;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -53,12 +55,11 @@ public class MyLocationService extends BroadcastReceiver {
 
                                     //send notifications at 15 minutes before the exact start time
                                     if(duration + 15 == leftMinutes ) {
-                                        showNotification(context, event.getTittle() + " is starting in " + leftMinutes + " minutes","you are now " + duration+" minutes driving away from the event location");
-
+                                        showNotification(context, event.getTittle(),"is starting in " + leftMinutes + " minutes, you are now " + duration+" minutes driving away from the event location");
                                     }
                                     //send notifications for reachable events start in 1 hour
                                     else if (duration <= leftMinutes && leftMinutes <= 60) {
-                                        showNotification(context, event.getTittle() + " is starting in " + leftMinutes + " minutes","you are now " + duration +" minutes driving away from the event location");
+                                        showNotification(context, event.getTittle(),"is starting in " + leftMinutes + " minutes, you are now " + duration+" minutes driving away from the event location");
                                     }
                                 }
 
@@ -77,13 +78,27 @@ public class MyLocationService extends BroadcastReceiver {
     }
 
     private void showNotification(Context context, String title, String message) {
+
+        Intent deleteBroadcastIntent = new Intent(context, DeleteNotificationReceiver.class);
+        deleteBroadcastIntent.putExtra("eventTitle",title);
+        PendingIntent deleteActionIntent = PendingIntent.getBroadcast(context,NOTIFICATION_CHANNEL,deleteBroadcastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent dismissBroadcastIntent = new Intent(context, DismissNotificationReceiver.class);
+        dismissBroadcastIntent.putExtra("eventTitle",title);
+        PendingIntent dismissActionIntent = PendingIntent.getBroadcast(context,NOTIFICATION_CHANNEL,dismissBroadcastIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default")
                 .setSmallIcon(R.drawable.stopwatch)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
-//                .setContentIntent(pendingIntent);
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setShowWhen(true)
+                .addAction(R.mipmap.ic_launcher,"Delete",deleteActionIntent)
+                .addAction(R.mipmap.ic_launcher_round, "Dismiss", dismissActionIntent);
+
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -100,8 +115,7 @@ public class MyLocationService extends BroadcastReceiver {
                 notificationManager.createNotificationChannel(channel);
             }
         }
-//        notificationManager.notify(NOTIFICATION_ID,builder.build());
-        notificationManager.notify(0,builder.build());
+        notificationManager.notify(NOTIFICATION_CHANNEL,builder.build());
 
     }
 }

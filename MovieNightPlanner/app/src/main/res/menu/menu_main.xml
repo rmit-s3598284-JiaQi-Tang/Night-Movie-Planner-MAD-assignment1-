@@ -21,5 +21,9 @@
         android:id="@+id/menuDescending"
         android:title="Descending" />
 
+    <item
+        android:id="@+id/settings"
+        android:title="Settings" />
+
 
 </menu>

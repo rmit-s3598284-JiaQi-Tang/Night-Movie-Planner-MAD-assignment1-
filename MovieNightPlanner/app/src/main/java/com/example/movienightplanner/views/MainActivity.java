@@ -90,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //do database change in another thread
+
+    public void updateListView() {
+        MainActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                listAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
     private void updateLoacation() {
 
         buildLocationRequest();
@@ -169,6 +179,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Descending Events", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                break;
+
         }
         return true;
     }
@@ -177,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        listAdapter.notifyDataSetChanged();
+        updateListView();
 
     }
 

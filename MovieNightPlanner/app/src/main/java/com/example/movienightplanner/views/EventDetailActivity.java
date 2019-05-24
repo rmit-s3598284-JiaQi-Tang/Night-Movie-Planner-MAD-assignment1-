@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.movienightplanner.R;
 import com.example.movienightplanner.controllers.adapter.EventDetailListViewOnItemClickListener;
+import com.example.movienightplanner.database.DBHelper;
 import com.example.movienightplanner.models.AppEngineImpl;
 
 public class EventDetailActivity extends AppCompatActivity {
@@ -130,6 +131,9 @@ public class EventDetailActivity extends AppCompatActivity {
 
             case R.id.menuDelete:
 
+                //delete from database
+                DBHelper dbHelper = new DBHelper(this);
+                dbHelper.deleteEvent(Integer.parseInt(appEngine.eventLists.get(eventPosition).getId()));
                 //delete the event by that position
                 appEngine.eventLists.remove(eventPosition);
                 onBackPressed();

@@ -14,15 +14,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import android.content.Context;
 
@@ -35,6 +32,8 @@ public class AppEngineImpl implements AppEngine {
     public List<EventImpl> eventLists;
 
     private boolean dataRead = false;
+
+    int remindingPeriod = 15;
 
     public static AppEngineImpl getSharedInstance() {
         if (sharedInstance == null) {
@@ -227,19 +226,6 @@ public class AppEngineImpl implements AppEngine {
         return soonestEvents;
     }
 
-//    @Override
-//    public boolean isValidDate(String date) {
-//        SimpleDateFormat date12Format = new SimpleDateFormat(DateFormats.DATETIME_FORMAT, Locale.ENGLISH);
-//        boolean flag = true;
-//
-//        try {
-//            date12Format.parse(date);
-//        } catch (ParseException e) {
-//            flag = false;
-//        }
-//        return flag;
-//    }
-
     @Override
     public void showAlert(String message, Context context) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
@@ -256,5 +242,15 @@ public class AppEngineImpl implements AppEngine {
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
+    }
+
+    @Override
+    public int getRemindingPeriod() {
+        return remindingPeriod;
+    }
+
+    @Override
+    public void setRemindingPeriod(int remindingPeriod) {
+        this.remindingPeriod = remindingPeriod;
     }
 }

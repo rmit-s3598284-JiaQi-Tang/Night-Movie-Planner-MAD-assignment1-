@@ -139,6 +139,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("delete from " + ATTENDANCE_TABLE_NAME + " where " + ATTENDANCE_COLUMN_EVENTID + "=" + eventId + " and " + ATTENDANCE_COLUMN_ATTENDEESNAME + "=" + attendeeName);
     }
 
+    //delete an Attendance using 2 specific ids
+    public void deleteEvent (Integer eventId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from " + EVENTS_TABLE_NAME + " where " + EVENTS_COLUMN_ID + "=" + eventId);
+    }
+
 
     //get all attendees' names of an Event
     public ArrayList<String> getAllAttendeesOfAnEvent(Integer eventId) {

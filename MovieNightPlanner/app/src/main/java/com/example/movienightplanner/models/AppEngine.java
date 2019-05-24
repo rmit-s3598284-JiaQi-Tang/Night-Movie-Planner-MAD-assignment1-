@@ -19,15 +19,15 @@ public interface AppEngine {
 
     public List<String> readTextFile(String fileName, Context context);
 
-//    public Date convertToDate(String inputDate);
+    public int getRemindingPeriod();
+
+    public void setRemindingPeriod(int remindingPeriod);
 
     public void ascendEvents();
 
     public void descendEvents();
 
     public List<EventImpl> get3SoonestEvents();
-
-//    public boolean isValidDate(String date);
 
     public void showAlert(String message, Context context);
 

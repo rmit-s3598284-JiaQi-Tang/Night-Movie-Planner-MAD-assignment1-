@@ -65,7 +65,7 @@ public class EditEventOnclickListener implements View.OnClickListener {
             EventImpl event = appEngine.eventLists.get(eventPosition);
             dbHelper.editEvent(new Integer(event.getId()),event.getTittle(),event.getStartDate(),event.getEndDate(),event.getVenue(),event.getLocation());
 
-            //show alert to tell the new event created
+            //show alert
             AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getContext());
             builder1.setMessage("Event has been Edited !");
             builder1.setCancelable(true);
