@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.movienightplanner.R;
-import com.example.movienightplanner.api.MyLocationService;
+import com.example.movienightplanner.receivers.MyLocationService;
 import com.example.movienightplanner.controllers.adapter.CustomListAdapter_MainActivityList;
 import com.example.movienightplanner.controllers.adapter.EventListViewOnItemClickListener;
 import com.example.movienightplanner.models.AppEngineImpl;

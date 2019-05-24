@@ -1,4 +1,4 @@
-package com.example.movienightplanner.api;
+package com.example.movienightplanner.receivers;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 import com.example.movienightplanner.R;
+import com.example.movienightplanner.api.APIManager;
 import com.example.movienightplanner.models.AppEngineImpl;
 import com.example.movienightplanner.models.EventImpl;
 import com.google.android.gms.location.LocationResult;

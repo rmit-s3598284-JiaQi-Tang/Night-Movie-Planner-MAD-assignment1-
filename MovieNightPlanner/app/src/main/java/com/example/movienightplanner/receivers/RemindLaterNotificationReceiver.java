@@ -1,4 +1,4 @@
-package com.example.movienightplanner.api;
+package com.example.movienightplanner.receivers;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.widget.Toast;
 
 import com.example.movienightplanner.models.AppEngineImpl;
 

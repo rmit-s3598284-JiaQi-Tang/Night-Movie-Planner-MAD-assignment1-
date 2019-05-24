@@ -1,4 +1,4 @@
-package com.example.movienightplanner.api;
+package com.example.movienightplanner.receivers;
 
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;

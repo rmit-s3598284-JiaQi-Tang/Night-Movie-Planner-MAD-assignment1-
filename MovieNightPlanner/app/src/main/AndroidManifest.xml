@@ -22,10 +22,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".views.SettingsActivity"></activity>
 
-        <receiver android:name=".api.MyLocationService" />
-        <receiver android:name=".api.DeleteNotificationReceiver"/>
-        <receiver android:name=".api.DismissNotificationReceiver"/>
-        <receiver android:name=".api.RemindLaterNotificationReceiver"/>
+        <receiver android:name=".receivers.MyLocationService" />
+        <receiver android:name=".receivers.DeleteNotificationReceiver"/>
+        <receiver android:name=".receivers.DismissNotificationReceiver"/>
+        <receiver android:name=".receivers.RemindLaterNotificationReceiver"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

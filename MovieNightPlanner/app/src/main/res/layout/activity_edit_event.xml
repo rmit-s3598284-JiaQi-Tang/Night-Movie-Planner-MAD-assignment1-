@@ -47,19 +47,6 @@
             android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
 
-        <DatePicker
-            android:id="@+id/startDateDatePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"></DatePicker>
-
-        <TimePicker
-            android:id="@+id/startDateTimePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:timePickerMode="spinner"></TimePicker>
-
         <TextView
             android:id="@+id/endDateTextViewID"
             android:layout_width="wrap_content"
@@ -76,19 +63,6 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/editText_size"
             android:textStyle="bold" />
-
-        <DatePicker
-            android:id="@+id/endDateDatePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"></DatePicker>
-
-        <TimePicker
-            android:id="@+id/endDateTimePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:timePickerMode="spinner"></TimePicker>
 
         <TextView
             android:id="@+id/venueTextViewID"
