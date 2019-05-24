@@ -33,7 +33,7 @@ public class AppEngineImpl implements AppEngine {
 
     private boolean dataRead = false;
 
-    int remindingPeriod = 15;
+    public static int remindingPeriod = 1;
 
     public static AppEngineImpl getSharedInstance() {
         if (sharedInstance == null) {
@@ -144,18 +144,6 @@ public class AppEngineImpl implements AppEngine {
         return lines;
     }
 
-//    @Override
-//    public Date convertToDate(String inputDate) {
-//        Date date = new Date();
-//        SimpleDateFormat date12Format = new SimpleDateFormat(DateFormats.DATETIME_FORMAT, Locale.ENGLISH);
-//        try {
-//            date = date12Format.parse(inputDate);
-//        } catch (ParseException ex) {
-//            Log.v("Exception", ex.getLocalizedMessage());
-//        }
-//        return date;
-//    }
-
     @Override
     public void ascendEvents() {
         Collections.sort(eventLists, new Comparator<EventImpl>() {
@@ -244,13 +232,11 @@ public class AppEngineImpl implements AppEngine {
         alert11.show();
     }
 
-    @Override
-    public int getRemindingPeriod() {
-        return remindingPeriod;
+    public static int getRemindingPeriod() {
+        return AppEngineImpl.remindingPeriod;
     }
 
-    @Override
-    public void setRemindingPeriod(int remindingPeriod) {
-        this.remindingPeriod = remindingPeriod;
+    public static void setRemindingPeriod(int remindingPeriod) {
+        AppEngineImpl.remindingPeriod = remindingPeriod;
     }
 }

@@ -14,35 +14,26 @@ import com.example.movienightplanner.views.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.example.movienightplanner.api.MyLocationService.NOTIFICATION_CHANNEL;
-
 public class DeleteNotificationReceiver extends BroadcastReceiver {
 
     public AppEngineImpl appEngine = AppEngineImpl.getSharedInstance();
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String title = intent.getStringExtra("eventTitle");
-        int titleIndex = -1;
+        String id = intent.getStringExtra("channelId");
         int eventId = -1;
-        for(EventImpl event : appEngine.eventLists) {
-            if(event.getTittle().equals(title)) {
-                titleIndex = appEngine.eventLists.indexOf(event);
-                eventId = Integer.parseInt(event.getId());
-            }
-        }
+        eventId = Integer.parseInt(appEngine.eventLists.get(Integer.parseInt(id)).getId());
 
-        if(titleIndex != -1 && eventId != -1){
+        if(eventId != -1){
             DBHelper dbHelper = new DBHelper(context);
             dbHelper.deleteEvent(eventId);
-            appEngine.eventLists.remove(titleIndex);
+            appEngine.eventLists.remove(Integer.parseInt(id));
             MainActivity.getInstance().updateListView();
-            Toast.makeText(context,title + " was deleted", Toast.LENGTH_LONG);
 
             NotificationManager notificationManager = (NotificationManager) context
                     .getSystemService(Context.NOTIFICATION_SERVICE);
 
-            notificationManager.cancel(NOTIFICATION_CHANNEL);
+            notificationManager.cancel(Integer.parseInt(id));
         }
 
     }

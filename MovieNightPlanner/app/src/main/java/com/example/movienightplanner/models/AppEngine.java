@@ -19,10 +19,6 @@ public interface AppEngine {
 
     public List<String> readTextFile(String fileName, Context context);
 
-    public int getRemindingPeriod();
-
-    public void setRemindingPeriod(int remindingPeriod);
-
     public void ascendEvents();
 
     public void descendEvents();
